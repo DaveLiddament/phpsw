@@ -2,10 +2,10 @@
 
 namespace App\Repository;
 
-use App\Entity\Sponsor;
+use App\Entity\Venue;
 use Doctrine\ORM\EntityManagerInterface;
 
-class SponsorRepository
+class VenueRepository
 {
     /**
      * @var EntityManagerInterface
@@ -18,16 +18,16 @@ class SponsorRepository
     }
 
     /**
-     * @return Sponsor[]
+     * @return Venue[]
      */
     public function findAll(): iterable
     {
-        return $this->entityManager->getRepository(Sponsor::class)->findAll();
+        return $this->entityManager->getRepository(Venue::class)->findAll();
     }
 
-    public function persist(Sponsor $sponsor): void
+    public function persist(Venue $venue): void
     {
-        $this->entityManager->persist($sponsor);
+        $this->entityManager->persist($venue);
         $this->entityManager->flush();
     }
 }

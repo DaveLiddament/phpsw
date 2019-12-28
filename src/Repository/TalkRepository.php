@@ -2,10 +2,10 @@
 
 namespace App\Repository;
 
-use App\Entity\Sponsor;
+use App\Entity\Talk;
 use Doctrine\ORM\EntityManagerInterface;
 
-class SponsorRepository
+class TalkRepository
 {
     /**
      * @var EntityManagerInterface
@@ -18,16 +18,16 @@ class SponsorRepository
     }
 
     /**
-     * @return Sponsor[]
+     * @return Talk[]
      */
     public function findAll(): iterable
     {
-        return $this->entityManager->getRepository(Sponsor::class)->findAll();
+        return $this->entityManager->getRepository(Talk::class)->findAll();
     }
 
-    public function persist(Sponsor $sponsor): void
+    public function persist(Talk $talk): void
     {
-        $this->entityManager->persist($sponsor);
+        $this->entityManager->persist($talk);
         $this->entityManager->flush();
     }
 }

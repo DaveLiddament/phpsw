@@ -2,10 +2,10 @@
 
 namespace App\Repository;
 
-use App\Entity\Sponsor;
+use App\Entity\Event;
 use Doctrine\ORM\EntityManagerInterface;
 
-class SponsorRepository
+class EventRepository
 {
     /**
      * @var EntityManagerInterface
@@ -18,16 +18,16 @@ class SponsorRepository
     }
 
     /**
-     * @return Sponsor[]
+     * @return Event[]
      */
     public function findAll(): iterable
     {
-        return $this->entityManager->getRepository(Sponsor::class)->findAll();
+        return $this->entityManager->getRepository(Event::class)->findAll();
     }
 
-    public function persist(Sponsor $sponsor): void
+    public function persist(Event $event): void
     {
-        $this->entityManager->persist($sponsor);
+        $this->entityManager->persist($event);
         $this->entityManager->flush();
     }
 }

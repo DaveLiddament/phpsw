@@ -2,10 +2,10 @@
 
 namespace App\Repository;
 
-use App\Entity\Sponsor;
+use App\Entity\Person;
 use Doctrine\ORM\EntityManagerInterface;
 
-class SponsorRepository
+class PersonRepository
 {
     /**
      * @var EntityManagerInterface
@@ -18,16 +18,16 @@ class SponsorRepository
     }
 
     /**
-     * @return Sponsor[]
+     * @return Person[]
      */
     public function findAll(): iterable
     {
-        return $this->entityManager->getRepository(Sponsor::class)->findAll();
+        return $this->entityManager->getRepository(Person::class)->findAll();
     }
 
-    public function persist(Sponsor $sponsor): void
+    public function persist(Person $person): void
     {
-        $this->entityManager->persist($sponsor);
+        $this->entityManager->persist($person);
         $this->entityManager->flush();
     }
 }
