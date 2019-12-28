@@ -12,6 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Person
 {
     /**
+     * @var int
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
@@ -19,41 +20,49 @@ class Person
     private $id;
 
     /**
+     * @var string
      * @ORM\Column(type="string", length=255)
      */
     private $name;
 
     /**
+     * @var string|null
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $photoUrl;
 
     /**
+     * @var string|null
      * @ORM\Column(type="string", length=4096, nullable=true)
      */
     private $description;
 
     /**
+     * @var string|null
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $twitterHandle;
 
     /**
+     * @var string|null
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $githubHandle;
 
     /**
+     * @var string|null
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $websiteUrl;
 
     /**
+     * @var int|null
      * @ORM\Column(type="integer", nullable=true)
      */
     private $meetupId;
 
     /**
+     * @var Collection<int,Talk>
      * @ORM\ManyToMany(targetEntity="App\Entity\Talk", mappedBy="speakers")
      */
     private $talks;
@@ -153,7 +162,7 @@ class Person
     }
 
     /**
-     * @return Collection|Talk[]
+     * @return Collection<int,Talk>
      */
     public function getTalks(): Collection
     {

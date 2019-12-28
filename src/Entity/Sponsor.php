@@ -56,6 +56,7 @@ class Sponsor
     private $description;
 
     /**
+     * @var Collection<int,Event>
      * @ORM\ManyToMany(targetEntity="App\Entity\Event", mappedBy="sponsors")
      */
     private $events;
@@ -131,7 +132,7 @@ class Sponsor
     }
 
     /**
-     * @return Collection|Event[]
+     * @return Collection<int,Event>
      */
     public function getEvents(): Collection
     {

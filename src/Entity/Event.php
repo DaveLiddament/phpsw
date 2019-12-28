@@ -21,7 +21,7 @@ class Event
     private $id;
 
     /**
-     * @var string
+     * @var string|null
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $meetupId;
@@ -39,34 +39,37 @@ class Event
     private $title;
 
     /**
-     * @var string
+     * @var string|null
      * @ORM\Column(type="text", nullable=true)
      */
     private $description;
 
     /**
-     * @var Venue
+     * @var Venue|null
      * @ORM\ManyToOne(targetEntity="App\Entity\Venue", inversedBy="pub")
      */
     private $venue;
 
     /**
-     * @var Venue
+     * @var Venue|null
      * @ORM\ManyToOne(targetEntity="App\Entity\Venue", inversedBy="events")
      */
     private $pub;
 
     /**
+     * @var Collection<int,Person>
      * @ORM\ManyToMany(targetEntity="App\Entity\Person")
      */
     private $organisers;
 
     /**
+     * @var Collection<int,Sponsor>
      * @ORM\ManyToMany(targetEntity="App\Entity\Sponsor", inversedBy="events")
      */
     private $sponsors;
 
     /**
+     * @var Collection<int,Talk>
      * @ORM\OneToMany(targetEntity="App\Entity\Talk", mappedBy="event", orphanRemoval=true)
      */
     private $talks;
@@ -156,7 +159,7 @@ class Event
     }
 
     /**
-     * @return Collection|Person[]
+     * @return Collection<int,Person>
      */
     public function getOrganisers(): Collection
     {
@@ -182,7 +185,7 @@ class Event
     }
 
     /**
-     * @return Collection|Sponsor[]
+     * @return Collection<int,Sponsor>
      */
     public function getSponsors(): Collection
     {
@@ -208,7 +211,7 @@ class Event
     }
 
     /**
-     * @return Collection|Talk[]
+     * @return Collection<int,Talk>
      */
     public function getTalks(): Collection
     {
@@ -229,10 +232,6 @@ class Event
     {
         if ($this->talks->contains($talk)) {
             $this->talks->removeElement($talk);
-            // set the owning side to null (unless already changed)
-            if ($talk->getEvent() === $this) {
-                $talk->setEvent(null);
-            }
         }
 
         return $this;

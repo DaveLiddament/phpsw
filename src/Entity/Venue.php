@@ -12,6 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Venue
 {
     /**
+     * @var int
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
@@ -19,48 +20,56 @@ class Venue
     private $id;
 
     /**
+     * @var string
      * @ORM\Column(type="string", length=255)
      */
     private $name;
 
     /**
+     * @var string
      * @ORM\Column(type="string", length=255)
      */
     private $address;
 
     /**
+     * @var string
      * @ORM\Column(type="string", length=255)
      */
     private $postcode;
 
     /**
+     * @var string|null
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $mapsUrl;
 
     /**
+     * @var string|null
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $website;
 
     /**
+     * @var string
      * @ORM\Column(type="string", length=255)
      */
     private $type;
 
     /**
+     * @var Collection<int,Event>
      * @ORM\OneToMany(targetEntity="App\Entity\Event", mappedBy="venue")
      */
-    private $pub;
+    private $pubs;
 
     /**
+     * @var ArrayCollection<int,Event>
      * @ORM\OneToMany(targetEntity="App\Entity\Event", mappedBy="pub")
      */
     private $events;
 
     public function __construct()
     {
-        $this->pub = new ArrayCollection();
+        $this->pubs = new ArrayCollection();
         $this->events = new ArrayCollection();
     }
 
@@ -142,17 +151,17 @@ class Venue
     }
 
     /**
-     * @return Collection|Event[]
+     * @return Collection<int,Event>
      */
-    public function getPub(): Collection
+    public function getPubs(): Collection
     {
-        return $this->pub;
+        return $this->pubs;
     }
 
     public function addPub(Event $pub): self
     {
-        if (!$this->pub->contains($pub)) {
-            $this->pub[] = $pub;
+        if (!$this->pubs->contains($pub)) {
+            $this->pubs[] = $pub;
             $pub->setVenue($this);
         }
 
@@ -161,8 +170,8 @@ class Venue
 
     public function removePub(Event $pub): self
     {
-        if ($this->pub->contains($pub)) {
-            $this->pub->removeElement($pub);
+        if ($this->pubs->contains($pub)) {
+            $this->pubs->removeElement($pub);
             // set the owning side to null (unless already changed)
             if ($pub->getVenue() === $this) {
                 $pub->setVenue(null);
@@ -173,7 +182,7 @@ class Venue
     }
 
     /**
-     * @return Collection|Event[]
+     * @return Collection<int,Event>
      */
     public function getEvents(): Collection
     {

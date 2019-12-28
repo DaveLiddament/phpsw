@@ -12,6 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Talk
 {
     /**
+     * @var int
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
@@ -19,47 +20,56 @@ class Talk
     private $id;
 
     /**
+     * @var string
      * @ORM\Column(type="string", length=255)
      */
     private $title;
 
     /**
+     * @var string|null
      * @ORM\Column(type="text", nullable=true)
      */
     private $abstract;
 
     /**
+     * @var Event
      * @ORM\ManyToOne(targetEntity="App\Entity\Event", inversedBy="talks")
      * @ORM\JoinColumn(nullable=false)
      */
     private $event;
 
     /**
+     * @var string|null
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $originalRelativeUrl;
 
     /**
+     * @var string|null
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $slidesUrl;
 
     /**
+     * @var string|null
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $joindinUrl;
 
     /**
+     * @var string|null
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $videoUrl;
 
     /**
+     * @var Collection<int,Person>
      * @ORM\ManyToMany(targetEntity="App\Entity\Person", inversedBy="talks")
      */
     private $speakers;
 
     /**
+     * @var bool
      * @ORM\Column(type="boolean")
      */
     private $showcase;
@@ -98,12 +108,12 @@ class Talk
         return $this;
     }
 
-    public function getEvent(): ?Event
+    public function getEvent(): Event
     {
         return $this->event;
     }
 
-    public function setEvent(?Event $event): self
+    public function setEvent(Event $event): self
     {
         $this->event = $event;
 
@@ -159,7 +169,7 @@ class Talk
     }
 
     /**
-     * @return Collection|Person[]
+     * @return Collection<int,Person>
      */
     public function getSpeakers(): Collection
     {
