@@ -1,0 +1,14 @@
+{% extends 'admin/base.html.twig' %}
+
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+
+{% set menuItem = 'venues' %}
+{% block body %}
+
+    <h1>Create Venue</h1>
+
+    {{ form(form) }}
+
+    Back to <a href="{{ url('venueList') }}">venue list</a>.
+
+{% endblock %}

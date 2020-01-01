@@ -5,12 +5,20 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Webmozart\Assert\Assert;
 
 /**
  * @ORM\Entity()
  */
 class Venue
 {
+    public const TALK_VENUE = 'talk venue';
+    public const PUB_VENUE = 'pub venue';
+    public const VALID_VENUE_TYPES = [
+        self::TALK_VENUE,
+        self::PUB_VENUE,
+    ];
+
     /**
      * @var int
      * @ORM\Id()
@@ -67,10 +75,15 @@ class Venue
      */
     private $events;
 
-    public function __construct()
+    public function __construct(string $name, string $address, string $postcode, string $type)
     {
         $this->pubs = new ArrayCollection();
         $this->events = new ArrayCollection();
+        $this->name = $name;
+        $this->address = $address;
+        $this->postcode = $postcode;
+        $this->type = $type;
+        $this->validate();
     }
 
     public function getId(): ?int
@@ -146,6 +159,7 @@ class Venue
     public function setType(string $type): self
     {
         $this->type = $type;
+        $this->validate();
 
         return $this;
     }
@@ -210,5 +224,10 @@ class Venue
         }
 
         return $this;
+    }
+
+    private function validate(): void
+    {
+        Assert::oneOf($this->type, self::VALID_VENUE_TYPES);
     }
 }
