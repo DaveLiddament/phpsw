@@ -13,7 +13,7 @@ class VenueDto
     /**
      * @var Venue|null
      */
-    private $venue;
+    private $venue = null;
 
     /**
      * @var string|null
@@ -55,17 +55,23 @@ class VenueDto
      */
     public $type;
 
-    public function __construct(?Venue $venue)
+    public static function newInstance(): self
     {
-        $this->venue = $venue;
-        if ($venue) {
-            $this->address = $venue->getAddress();
-            $this->mapsUrl = $venue->getMapsUrl();
-            $this->name = $venue->getName();
-            $this->postcode = $venue->getPostcode();
-            $this->type = $venue->getType();
-            $this->website = $venue->getWebsite();
-        }
+        return new self();
+    }
+
+    public static function newInstanceFromVenue(Venue $venue): self
+    {
+        $venueDto = new self();
+        $venueDto->venue = $venue;
+        $venueDto->address = $venue->getAddress();
+        $venueDto->mapsUrl = $venue->getMapsUrl();
+        $venueDto->name = $venue->getName();
+        $venueDto->postcode = $venue->getPostcode();
+        $venueDto->type = $venue->getType();
+        $venueDto->website = $venue->getWebsite();
+
+        return$venueDto;
     }
 
     public function asVenue(): Venue

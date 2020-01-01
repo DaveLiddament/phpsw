@@ -32,7 +32,7 @@ class Venue extends AbstractController
      */
     public function create(VenueRepository $venueRepository, Request $request): Response
     {
-        $venueDto = new VenueDto(null);
+        $venueDto = VenueDto::newInstance();
         $form = $this->createForm(VenueDtoType::class, $venueDto);
         $form->handleRequest($request);
 
