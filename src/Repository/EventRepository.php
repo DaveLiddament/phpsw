@@ -3,31 +3,14 @@
 namespace App\Repository;
 
 use App\Entity\Event;
-use Doctrine\ORM\EntityManagerInterface;
 
-class EventRepository
+/**
+ * @extends AbstractRepository<Event>
+ */
+class EventRepository extends AbstractRepository
 {
-    /**
-     * @var EntityManagerInterface
-     */
-    private $entityManager;
-
-    public function __construct(EntityManagerInterface $entityManager)
+    protected function getClassType(): string
     {
-        $this->entityManager = $entityManager;
-    }
-
-    /**
-     * @return Event[]
-     */
-    public function findAll(): iterable
-    {
-        return $this->entityManager->getRepository(Event::class)->findAll();
-    }
-
-    public function persist(Event $event): void
-    {
-        $this->entityManager->persist($event);
-        $this->entityManager->flush();
+        return Event::class;
     }
 }

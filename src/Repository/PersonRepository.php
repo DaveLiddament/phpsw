@@ -3,31 +3,14 @@
 namespace App\Repository;
 
 use App\Entity\Person;
-use Doctrine\ORM\EntityManagerInterface;
 
-class PersonRepository
+/**
+ * @extends AbstractRepository<Person>
+ */
+class PersonRepository extends AbstractRepository
 {
-    /**
-     * @var EntityManagerInterface
-     */
-    private $entityManager;
-
-    public function __construct(EntityManagerInterface $entityManager)
+    protected function getClassType(): string
     {
-        $this->entityManager = $entityManager;
-    }
-
-    /**
-     * @return Person[]
-     */
-    public function findAll(): iterable
-    {
-        return $this->entityManager->getRepository(Person::class)->findAll();
-    }
-
-    public function persist(Person $person): void
-    {
-        $this->entityManager->persist($person);
-        $this->entityManager->flush();
+        return Person::class;
     }
 }

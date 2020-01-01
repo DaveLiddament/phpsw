@@ -3,31 +3,14 @@
 namespace App\Repository;
 
 use App\Entity\Sponsor;
-use Doctrine\ORM\EntityManagerInterface;
 
-class SponsorRepository
+/**
+ * @extends AbstractRepository<Sponsor>
+ */
+class SponsorRepository extends AbstractRepository
 {
-    /**
-     * @var EntityManagerInterface
-     */
-    private $entityManager;
-
-    public function __construct(EntityManagerInterface $entityManager)
+    protected function getClassType(): string
     {
-        $this->entityManager = $entityManager;
-    }
-
-    /**
-     * @return Sponsor[]
-     */
-    public function findAll(): iterable
-    {
-        return $this->entityManager->getRepository(Sponsor::class)->findAll();
-    }
-
-    public function persist(Sponsor $sponsor): void
-    {
-        $this->entityManager->persist($sponsor);
-        $this->entityManager->flush();
+        return Sponsor::class;
     }
 }
