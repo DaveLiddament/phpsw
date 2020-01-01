@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Repository;
 
-use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Common\Persistence\ManagerRegistry;
 
 /**
  * @template T
@@ -12,11 +12,11 @@ use Doctrine\ORM\EntityManagerInterface;
 abstract class AbstractRepository
 {
     /**
-     * @var EntityManagerInterface
+     * @var ManagerRegistry
      */
     private $entityManager;
 
-    public function __construct(EntityManagerInterface $entityManager)
+    public function __construct(ManagerRegistry $entityManager)
     {
         $this->entityManager = $entityManager;
     }
@@ -36,11 +36,12 @@ abstract class AbstractRepository
      */
     final public function persist($event): void
     {
-        $this->entityManager->persist($event);
-        $this->entityManager->flush();
+        $manager = $this->entityManager->getManager();
+        $manager->persist($event);
+        $manager->flush();
     }
 
-    protected function getEntityManager(): EntityManagerInterface
+    protected function getEntityManager(): ManagerRegistry
     {
         return $this->entityManager;
     }
