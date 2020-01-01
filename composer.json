@@ -85,6 +85,7 @@
       "@twig-lint",
       "@yaml-lint",
       "@container-lint",
+      "@db-schema-check",
       "@cs",
       "@test",
       "@phpstan"
@@ -94,6 +95,7 @@
     "twig-lint" : "bin/console lint:twig templates",
     "yaml-lint" : "bin/console lint:yaml config",
     "container-lint" : "bin/console lint:container",
+    "db-schema-check" : "bin/console doctrine:schema:validate",
     "cs" : "php-cs-fixer fix -v --dry-run --verbose",
     "cs-fix" : "php-cs-fixer fix -v",
     "test" : "bin/phpunit --log-junit reports/phpunit/junit.xml",
