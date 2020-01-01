@@ -1,0 +1,33 @@
+{% extends 'admin/base.html.twig' %}
+
+
+{% set menuItem = 'venue' %}
+{% block body %}
+
+    <h1>Venues</h1>
+
+    {% if venues %}
+        <table class="">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+            <tr>
+                {% for venue in venues %}
+                    <td>{{ venue.name }}</td>
+                    <td><a href="#" class="btn btn-info">Edit</a> </td>
+                {% endfor %}
+            </tr>
+            </tbody>
+
+        </table>
+    {% else %}
+        <p>There are no venues.</p>
+    {% endif %}
+
+    <a href="#" class="btn btn-info" type="button">Create venue</a>
+
+{% endblock %}
