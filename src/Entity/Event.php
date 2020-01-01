@@ -46,13 +46,13 @@ class Event
 
     /**
      * @var Venue|null
-     * @ORM\ManyToOne(targetEntity="App\Entity\Venue", inversedBy="pub")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Venue", inversedBy="events")
      */
     private $venue;
 
     /**
      * @var Venue|null
-     * @ORM\ManyToOne(targetEntity="App\Entity\Venue", inversedBy="events")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Venue", inversedBy="pubs")
      */
     private $pub;
 

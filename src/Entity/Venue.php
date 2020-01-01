@@ -57,13 +57,13 @@ class Venue
 
     /**
      * @var Collection<int,Event>
-     * @ORM\OneToMany(targetEntity="App\Entity\Event", mappedBy="venue")
+     * @ORM\OneToMany(targetEntity="App\Entity\Event", mappedBy="pub")
      */
     private $pubs;
 
     /**
      * @var ArrayCollection<int,Event>
-     * @ORM\OneToMany(targetEntity="App\Entity\Event", mappedBy="pub")
+     * @ORM\OneToMany(targetEntity="App\Entity\Event", mappedBy="venue")
      */
     private $events;
 
