@@ -5,12 +5,21 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Webmozart\Assert\Assert;
 
 /**
  * @ORM\Entity()
  */
 class Sponsor
 {
+    public const NORMAL = 'Normal';
+    public const VENUE = 'Venue';
+
+    public const SPONSOR_TYPES = [
+        self::NORMAL,
+        self::VENUE,
+    ];
+
     /**
      * @var int
      *
@@ -26,6 +35,13 @@ class Sponsor
      * @ORM\Column(type="string", length=255)
      */
     private $name;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(type="boolean")
+     */
+    private $currentSponsor;
 
     /**
      * @var string
@@ -61,9 +77,14 @@ class Sponsor
      */
     private $events;
 
-    public function __construct()
+    public function __construct(string $name, string $sponsorType, string $logoUrl, string $websiteUrl)
     {
         $this->events = new ArrayCollection();
+        $this->currentSponsor = false;
+        $this->setName($name);
+        $this->setSponsorType($sponsorType);
+        $this->setLogoUrl($logoUrl);
+        $this->setWebsiteUrl($websiteUrl);
     }
 
     public function getId(): ?int
@@ -114,6 +135,7 @@ class Sponsor
 
     public function setSponsorType(string $sponsorType): self
     {
+        Assert::oneOf($sponsorType, self::SPONSOR_TYPES);
         $this->sponsorType = $sponsorType;
 
         return $this;
@@ -129,6 +151,16 @@ class Sponsor
         $this->description = $description;
 
         return $this;
+    }
+
+    public function isCurrentSponsor(): bool
+    {
+        return $this->currentSponsor;
+    }
+
+    public function setCurrentSponsor(bool $currentSponsor): void
+    {
+        $this->currentSponsor = $currentSponsor;
     }
 
     /**
