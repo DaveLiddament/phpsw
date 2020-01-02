@@ -5,12 +5,22 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Webmozart\Assert\Assert;
 
 /**
  * @ORM\Entity()
  */
 class Person
 {
+    public const ORGANISER_USER = 'organiser';
+    public const HELPER_USER = 'helper';
+    public const NORMAL_USER = 'normal';
+    public const USER_TYPES = [
+        self::ORGANISER_USER,
+        self::HELPER_USER,
+        self::NORMAL_USER,
+    ];
+
     /**
      * @var int
      * @ORM\Id()
@@ -26,6 +36,12 @@ class Person
     private $name;
 
     /**
+     * @var string
+     * @ORM\Column(type="string", length=255)
+     */
+    private $type;
+
+    /**
      * @var string|null
      * @ORM\Column(type="string", length=255, nullable=true)
      */
@@ -36,6 +52,12 @@ class Person
      * @ORM\Column(type="string", length=4096, nullable=true)
      */
     private $description;
+
+    /**
+     * @var string|null
+     * @ORM\Column(type="string", length=4096, nullable=true)
+     */
+    private $fullDescription;
 
     /**
      * @var string|null
@@ -62,14 +84,35 @@ class Person
     private $meetupId;
 
     /**
+     * @var string|null
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $email;
+
+    /**
+     * @var string|null
+     * @ORM\Column(type="string", length=20, nullable=true)
+     */
+    private $mobileNumber;
+
+    /**
      * @var Collection<int,Talk>
      * @ORM\ManyToMany(targetEntity="App\Entity\Talk", mappedBy="speakers")
      */
     private $talks;
 
-    public function __construct()
+    /**
+     * @var Collection<int,Event>
+     * @ORM\ManyToMany(targetEntity="App\Entity\Event", mappedBy="organisers")
+     */
+    private $events;
+
+    public function __construct(string $name, string $type)
     {
         $this->talks = new ArrayCollection();
+        $this->events = new ArrayCollection();
+        $this->setName($name);
+        $this->setType($type);
     }
 
     public function getId(): ?int
@@ -187,5 +230,59 @@ class Person
         }
 
         return $this;
+    }
+
+    public function getFullDescription(): ?string
+    {
+        return $this->fullDescription;
+    }
+
+    public function setFullDescription(?string $fullDescription): void
+    {
+        $this->fullDescription = $fullDescription;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(?string $email): void
+    {
+        $this->email = $email;
+    }
+
+    public function getMobileNumber(): ?string
+    {
+        return $this->mobileNumber;
+    }
+
+    public function setMobileNumber(?string $mobileNumber): void
+    {
+        $this->mobileNumber = $mobileNumber;
+    }
+
+    /**
+     * @return Collection<int, Event>
+     */
+    public function getEvents(): Collection
+    {
+        return $this->events;
+    }
+
+    public function getType(): string
+    {
+        return $this->type;
+    }
+
+    public function setType(string $type): void
+    {
+        Assert::oneOf($type, self::USER_TYPES);
+        $this->type = $type;
+    }
+
+    public function canDelete(): bool
+    {
+        return $this->talks->isEmpty() && $this->events->isEmpty();
     }
 }

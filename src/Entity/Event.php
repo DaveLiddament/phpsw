@@ -58,7 +58,7 @@ class Event
 
     /**
      * @var Collection<int,Person>
-     * @ORM\ManyToMany(targetEntity="App\Entity\Person")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Person", inversedBy="events")
      */
     private $organisers;
 

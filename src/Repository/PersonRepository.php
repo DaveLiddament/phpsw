@@ -3,12 +3,30 @@
 namespace App\Repository;
 
 use App\Entity\Person;
+use Webmozart\Assert\Assert;
 
 /**
  * @extends AbstractRepository<Person>
  */
 class PersonRepository extends AbstractRepository
 {
+    /**
+     * @return Person[]
+     */
+    public function findAll(): iterable
+    {
+        return $this->getRepository()->findBy([], ['name' => 'ASC']);
+    }
+
+    /**
+     * @param Person $person
+     */
+    public function delete($person): void
+    {
+        Assert::true($person->canDelete());
+        parent::delete($person);
+    }
+
     protected function getClassType(): string
     {
         return Person::class;
