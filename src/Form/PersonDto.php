@@ -62,7 +62,7 @@ class PersonDto
     public $websiteUrl;
 
     /**
-     * @var int|null
+     * @var string|null
      */
     public $meetupId;
 

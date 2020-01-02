@@ -78,8 +78,8 @@ class Person
     private $websiteUrl;
 
     /**
-     * @var int|null
-     * @ORM\Column(type="integer", nullable=true)
+     * @var string|null
+     * @ORM\Column(type="string", nullable=true)
      */
     private $meetupId;
 
@@ -192,12 +192,12 @@ class Person
         return $this;
     }
 
-    public function getMeetupId(): ?int
+    public function getMeetupId(): ?string
     {
         return $this->meetupId;
     }
 
-    public function setMeetupId(?int $meetupId): self
+    public function setMeetupId(?string $meetupId): self
     {
         $this->meetupId = $meetupId;
 
