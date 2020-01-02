@@ -38,12 +38,14 @@ class VenueDto
 
     /**
      * @var string|null
+     * @Constraints\Url()
      * @Constraints\Length(max="255")
      */
     public $mapsUrl;
 
     /**
      * @var string|null
+     * @Constraints\Url()
      * @Constraints\Length(max="255")
      */
     public $website;
