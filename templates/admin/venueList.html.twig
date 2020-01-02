@@ -19,7 +19,7 @@
             <tbody>
             {% for venue in venues %}
                 <tr>
-                    <td>{{ venue.name }}</td>
+                    <td><a href="{{ url('venueRead', {'venue' : venue.id}) }}">{{ venue.name }}</a> </td>
                     <td>{{ venue.type }}</td>
                     <td>{{ venue.address }} {{ venue.postcode }}</td>
                     <td>

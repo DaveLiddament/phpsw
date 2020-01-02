@@ -1,0 +1,66 @@
+{% extends 'admin/base.html.twig' %}
+
+
+{% set menuItem = 'venues' %}
+{% block body %}
+
+    <h1>Venue {{ venue.name }}</h1>
+
+    <table class="table">
+        <tbody>
+        <tr>
+            <th>Type</th>
+            <td>{{ venue.type }}</td>
+        </tr>
+        <tr>
+            <th>Address</th>
+            <td>{{ venue.address }}</td>
+        </tr>
+        <tr>
+            <th>Postcode</th>
+            <td>{{ venue.postcode }}</td>
+        </tr>
+        <tr>
+            <th class="">Website</th>
+            <td>{{ venue.website }}</td>
+        </tr>
+        <tr>
+            <th>Maps URL</th>
+            <td>{{ venue.mapsUrl }}</td>
+        </tr>
+
+        {% if venue.events.count > 0 %}
+            <tr>
+                <th>Events</th>
+                <td>
+                    {% for event in venue.events %}
+                        {{ event.name }}<br>
+                    {% endfor %}
+                </td>
+            </tr>
+        {% endif %}
+
+        {% if venue.pubs.count > 0 %}
+            <tr>
+                <th>Pubs</th>
+                <td>
+                    {% for pub in venue.pubs %}
+                        {{ pub.name }}<br>
+                    {% endfor %}
+                </td>
+            </tr>
+        {% endif %}
+        </tbody>
+
+    </table>
+
+    <p>
+        <a href="{{ url('venueUpdate', {'venue' : venue.id}) }}" class="btn btn-info" role="button">Edit</a>
+        {% if venue.canDelete %}
+            <a href="{{ url('venueDelete', {'venue' : venue.id}) }}" class="btn btn-danger" role="button">Delete</a>
+        {% endif %}
+    </p>
+
+    Back to <a href="{{ url('venueList') }}">venue list</a>.
+
+{% endblock %}

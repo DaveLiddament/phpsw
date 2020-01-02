@@ -39,7 +39,17 @@ class VenueController extends AbstractController
     }
 
     /**
-     * @Route("/{venue}", name="venueUpdate")
+     * @Route("/{venue}", name="venueRead")
+     */
+    public function read(Venue $venue): Response
+    {
+        return $this->render('admin/venue.html.twig', [
+            'venue' => $venue,
+        ]);
+    }
+
+    /**
+     * @Route("/{venue}/update", name="venueUpdate")
      */
     public function update(VenueRepository $venueRepository, Request $request, Venue $venue): Response
     {
