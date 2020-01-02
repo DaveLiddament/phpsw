@@ -1,0 +1,40 @@
+{% extends 'admin/base.html.twig' %}
+
+
+{% set menuItem = 'persons' %}
+{% block body %}
+
+    <h1>Persons</h1>
+
+    {% if persons %}
+        <table class="table">
+            <thead class="thead-light">
+                <tr>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for person in persons %}
+                <tr>
+                    <td><a href="{{ url('personRead', {'person' : person.id}) }}">{{ person.name }}</a> </td>
+                    <td>{{ person.type }}</td>
+                    <td>
+                        <a href="{{ url('personUpdate', {'person' : person.id}) }}" class="btn btn-info" role="button">Edit</a>
+                        {% if person.canDelete %}
+                            <a href="{{ url('personDelete', {'person' : person.id}) }}" class="btn btn-danger" role="button">Delete</a>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+
+        </table>
+    {% else %}
+        <p>There are no persons.</p>
+    {% endif %}
+
+    <a href="{{ url('personCreate') }}" class="btn btn-info" type="button">Create person</a>
+
+{% endblock %}

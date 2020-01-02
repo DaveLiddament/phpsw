@@ -1,0 +1,17 @@
+{% extends 'admin/base.html.twig' %}
+
+
+{% set menuItem = 'persons' %}
+{% block body %}
+
+    <h1>Delete person: {{ person.name }}</h1>
+
+    <p class="warning">Are you sure you want to delete person ({{ person.name }})? </p>
+
+    <form method="post">
+        <input type="submit" role="button" value="Delete" class="btn btn-danger">
+    </form>
+
+    Back to <a href="{{ url('personList') }}">person list</a>.
+
+{% endblock %}

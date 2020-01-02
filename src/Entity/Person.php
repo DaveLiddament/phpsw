@@ -16,9 +16,9 @@ class Person
     public const HELPER_USER = 'helper';
     public const NORMAL_USER = 'normal';
     public const USER_TYPES = [
-        self::ORGANISER_USER,
-        self::HELPER_USER,
         self::NORMAL_USER,
+        self::HELPER_USER,
+        self::ORGANISER_USER,
     ];
 
     /**
