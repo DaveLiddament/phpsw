@@ -7,5 +7,6 @@ parameters:
     symfony:
         container_xml_path: '%rootDir%/../../../var/cache/dev/App_KernelDevDebugContainer.xml'
 
-includes:
-- phpstan-baseline.neon
+    ignoreErrors:
+    - '#Method App\\Form\\[a-zA-Z]+Type::buildForm\(\) has parameter \$options with no value type specified in iterable type array\.#'
+
