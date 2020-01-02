@@ -12,11 +12,11 @@ use Webmozart\Assert\Assert;
  */
 class Sponsor
 {
-    public const NORMAL = 'Normal';
-    public const VENUE = 'Venue';
+    public const FULL = 'full';
+    public const VENUE = 'venue';
 
     public const SPONSOR_TYPES = [
-        self::NORMAL,
+        self::FULL,
         self::VENUE,
     ];
 
