@@ -15,7 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * @Route("/admin/venues")
  */
-class Venue extends AbstractController
+class VenueController extends AbstractController
 {
     /**
      * @Route("", name="venueList")
