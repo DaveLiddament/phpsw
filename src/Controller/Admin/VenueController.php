@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller\Admin;
 
+use App\Entity\Venue;
 use App\Form\VenueDto;
 use App\Form\VenueDtoType;
 use App\Repository\VenueRepository;
@@ -33,18 +34,40 @@ class VenueController extends AbstractController
     public function create(VenueRepository $venueRepository, Request $request): Response
     {
         $venueDto = VenueDto::newInstance();
+
+        return $this->processVenueForm($venueRepository, $request, $venueDto, true);
+    }
+
+    /**
+     * @Route("/{venue}", name="venueUpdate")
+     */
+    public function update(VenueRepository $venueRepository, Request $request, Venue $venue): Response
+    {
+        $venueDto = VenueDto::newInstanceFromVenue($venue);
+
+        return $this->processVenueForm($venueRepository, $request, $venueDto, false);
+    }
+
+    private function processVenueForm(
+        VenueRepository $venueRepository,
+        Request $request,
+        VenueDto $venueDto,
+        bool $isCreate
+    ): Response {
         $form = $this->createForm(VenueDtoType::class, $venueDto);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             $venue = $venueDto->asVenue();
             $venueRepository->persist($venue);
-            $this->addFlash(FlashLevels::SUCCESS, "Venue {$venue->getName()} created");
+            $message = "Venue {$venue->getName()} ".($isCreate ? 'created' : 'updated');
+            $this->addFlash(FlashLevels::SUCCESS, $message);
 
             return $this->redirectToRoute('venueList');
         }
 
-        return $this->render('admin/venueAdd.html.twig', [
+        return $this->render('admin/venueForm.html.twig', [
+            'isCreate' => $isCreate,
             'form' => $form->createView(),
         ]);
     }

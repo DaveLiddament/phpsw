@@ -5,7 +5,11 @@
 {% set menuItem = 'venues' %}
 {% block body %}
 
-    <h1>Create Venue</h1>
+    {% if isCreate %}
+        <h1>Create Venue</h1>
+    {% else %}
+        <h1>Update Venue</h1>
+    {% endif %}
 
     {{ form(form) }}
 

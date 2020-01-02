@@ -18,7 +18,7 @@
             {% for venue in venues %}
                 <tr>
                     <td>{{ venue.name }}</td>
-                    <td><a href="#" class="btn btn-info">Edit</a></td>
+                    <td><a href="{{ url('venueUpdate', {'venue' : venue.id}) }}" class="btn btn-info">Edit</a></td>
                 </tr>
             {% endfor %}
             </tbody>
