@@ -226,6 +226,11 @@ class Venue
         return $this;
     }
 
+    public function canDelete(): bool
+    {
+        return ($this->getEvents()->isEmpty()) && ($this->getPubs()->isEmpty());
+    }
+
     private function validate(): void
     {
         Assert::oneOf($this->type, self::VALID_VENUE_TYPES);

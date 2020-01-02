@@ -1,0 +1,17 @@
+{% extends 'admin/base.html.twig' %}
+
+
+{% set menuItem = 'venues' %}
+{% block body %}
+
+    <h1>Delete venue: {{ venue.name }}</h1>
+
+    <p class="warning">Are you sure you want to delete venue ({{ venue.name }})? </p>
+
+    <form method="post">
+        <input type="submit" role="button" value="Delete" class="btn btn-danger">
+    </form>
+
+    Back to <a href="{{ url('venueList') }}">venue list</a>.
+
+{% endblock %}

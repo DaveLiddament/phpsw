@@ -48,6 +48,27 @@ class VenueController extends AbstractController
         return $this->processVenueForm($venueRepository, $request, $venueDto, false);
     }
 
+    /**
+     * @Route("/{venue}/delete", name="venueDelete")
+     */
+    public function delete(VenueRepository $venueRepository, Request $request, Venue $venue): Response
+    {
+        if ($request->isMethod('POST')) {
+            if ($venue->canDelete()) {
+                $venueRepository->delete($venue);
+                $this->addFlash(FlashLevels::SUCCESS, "Venue {$venue->getName()} has been deleted");
+            } else {
+                $this->addFlash(FlashLevels::DANGER, "Could not delete venue {$venue->getName()}");
+            }
+
+            return $this->redirectToRoute('venueList');
+        }
+
+        return $this->render('admin/venueDelete.html.twig', [
+            'venue' => $venue,
+        ]);
+    }
+
     private function processVenueForm(
         VenueRepository $venueRepository,
         Request $request,

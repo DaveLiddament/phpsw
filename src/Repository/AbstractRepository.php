@@ -5,6 +5,8 @@ declare(strict_types=1);
 namespace App\Repository;
 
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ObjectManager;
+use Doctrine\Persistence\ObjectRepository;
 
 /**
  * @template T
@@ -22,28 +24,28 @@ abstract class AbstractRepository
     }
 
     /**
-     * @return T[]
-     */
-    final public function findAll(): iterable
-    {
-        $classType = $this->getClassType();
-
-        return $this->entityManager->getRepository($classType)->findAll();
-    }
-
-    /**
      * @param T $event
      */
     final public function persist($event): void
     {
-        $manager = $this->entityManager->getManager();
+        $manager = $this->getObjectManager();
         $manager->persist($event);
         $manager->flush();
     }
 
-    protected function getEntityManager(): ManagerRegistry
+    protected function getObjectManager(): ObjectManager
     {
-        return $this->entityManager;
+        return $this->entityManager->getManager();
+    }
+
+    /**
+     * @return ObjectRepository<T>
+     */
+    protected function getRepository(): ObjectRepository
+    {
+        $classType = $this->getClassType();
+
+        return $this->entityManager->getRepository($classType);
     }
 
     /**

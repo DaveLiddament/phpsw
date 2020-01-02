@@ -7,18 +7,27 @@
     <h1>Venues</h1>
 
     {% if venues %}
-        <table class="">
-            <thead>
-            <tr>
-                <th>Name</th>
-                <th>Actions</th>
-            </tr>
+        <table class="table">
+            <thead class="thead-light">
+                <tr>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Address</th>
+                    <th></th>
+                </tr>
             </thead>
             <tbody>
             {% for venue in venues %}
                 <tr>
                     <td>{{ venue.name }}</td>
-                    <td><a href="{{ url('venueUpdate', {'venue' : venue.id}) }}" class="btn btn-info">Edit</a></td>
+                    <td>{{ venue.type }}</td>
+                    <td>{{ venue.address }} {{ venue.postcode }}</td>
+                    <td>
+                        <a href="{{ url('venueUpdate', {'venue' : venue.id}) }}" class="btn btn-info" role="button">Edit</a>
+                        {% if venue.canDelete %}
+                            <a href="{{ url('venueDelete', {'venue' : venue.id}) }}" class="btn btn-danger" role="button">Delete</a>
+                        {% endif %}
+                    </td>
                 </tr>
             {% endfor %}
             </tbody>
