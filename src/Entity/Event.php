@@ -74,11 +74,13 @@ class Event
      */
     private $talks;
 
-    public function __construct()
+    public function __construct(string $title, DateTimeImmutable $date)
     {
         $this->organisers = new ArrayCollection();
         $this->sponsors = new ArrayCollection();
         $this->talks = new ArrayCollection();
+        $this->setTitle($title);
+        $this->setDate($date);
     }
 
     public function getId(): ?int
@@ -98,7 +100,7 @@ class Event
         return $this;
     }
 
-    public function getDate(): ?DateTimeImmutable
+    public function getDate(): DateTimeImmutable
     {
         return $this->date;
     }
@@ -110,7 +112,7 @@ class Event
         return $this;
     }
 
-    public function getTitle(): ?string
+    public function getTitle(): string
     {
         return $this->title;
     }
@@ -235,5 +237,10 @@ class Event
         }
 
         return $this;
+    }
+
+    public function canDelete(): bool
+    {
+        return $this->talks->isEmpty();
     }
 }

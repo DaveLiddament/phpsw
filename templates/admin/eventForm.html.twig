@@ -1,0 +1,18 @@
+{% extends 'admin/base.html.twig' %}
+
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+
+{% set menuItem = 'events' %}
+{% block body %}
+
+    {% if isCreate %}
+        <h1>Create Event</h1>
+    {% else %}
+        <h1>Update Event</h1>
+    {% endif %}
+
+    {{ form(form) }}
+
+    Back to <a href="{{ url('eventList') }}">event list</a>.
+
+{% endblock %}

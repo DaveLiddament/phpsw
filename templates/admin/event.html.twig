@@ -1,0 +1,59 @@
+{% extends 'admin/base.html.twig' %}
+
+
+{% set menuItem = 'events' %}
+{% block body %}
+
+    <h1>Event {{ event.title }}</h1>
+
+    <table class="table">
+        <tbody>
+        <tr>
+            <th>Date</th>
+            <td>{{ event.date|date('D jS M Y')}}</td>
+        </tr>
+        <tr>
+            <th class="">Meetup ID</th>
+            <td>{{ event.meetupId }}</td>
+        </tr>
+        <tr>
+            <th>Description</th>
+            <td>{{ event.description }}</td>
+        </tr>
+        {% if event.venue %}
+        <tr>
+            <th>Venue</th>
+            <td><a href="{{ url('venueRead', {'venue': event.venue.id}) }}">{{ event.venue.name }}</a></td>
+        </tr>
+        {% endif %}
+        {% if event.pub %}
+        <tr>
+            <th>Pub</th>
+            <td><a href="{{ url('venueRead', {'venue': event.pub.id}) }}">{{ event.pub.name }}</a></td>
+        </tr>
+        {% endif %}
+
+        {% if event.organisers.count > 0 %}
+            <tr>
+                <th>Organisers</th>
+                <td>
+                    {% for organiser in event.organisers %}
+                        {{ organiser.name }}<br>
+                    {% endfor %}
+                </td>
+            </tr>
+        {% endif %}
+        </tbody>
+
+    </table>
+
+    <p>
+        <a href="{{ url('eventUpdate', {'event' : event.id}) }}" class="btn btn-info" role="button">Edit</a>
+        {% if event.canDelete %}
+            <a href="{{ url('eventDelete', {'event' : event.id}) }}" class="btn btn-danger" role="button">Delete</a>
+        {% endif %}
+    </p>
+
+    Back to <a href="{{ url('eventList') }}">event list</a>.
+
+{% endblock %}

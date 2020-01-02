@@ -1,0 +1,42 @@
+{% extends 'admin/base.html.twig' %}
+
+
+{% set menuItem = 'events' %}
+{% block body %}
+
+    <h1>Events</h1>
+
+    {% if events %}
+        <table class="table">
+            <thead class="thead-light">
+                <tr>
+                    <th>Date</th>
+                    <th>Name</th>
+                    <th>Number of talks</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for event in events %}
+                <tr>
+                    <td><a href="{{ url('eventRead', {'event' : event.id}) }}">{{ event.date|date('D jS M Y') }}</a> </td>
+                    <td>{{ event.title }}</td>
+                    <td>{{ event.talks|length }}</td>
+                    <td>
+                        <a href="{{ url('eventUpdate', {'event' : event.id}) }}" class="btn btn-info" role="button">Edit</a>
+                        {% if event.canDelete %}
+                            <a href="{{ url('eventDelete', {'event' : event.id}) }}" class="btn btn-danger" role="button">Delete</a>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+
+        </table>
+    {% else %}
+        <p>There are no events.</p>
+    {% endif %}
+
+    <a href="{{ url('eventCreate') }}" class="btn btn-info" type="button">Create event</a>
+
+{% endblock %}
