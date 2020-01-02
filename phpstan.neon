@@ -10,3 +10,6 @@ parameters:
     ignoreErrors:
     - '#Method App\\Form\\[a-zA-Z]+Type::buildForm\(\) has parameter \$options with no value type specified in iterable type array\.#'
 
+    excludes_analyse:
+    - %rootDir%/../../../src/Legacy
+
