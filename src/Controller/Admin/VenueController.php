@@ -39,7 +39,7 @@ class VenueController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $venue = $venueDto->asVenue();
             $venueRepository->persist($venue);
-            $this->addFlash('info', 'Venue created');
+            $this->addFlash(FlashLevels::SUCCESS, "Venue {$venue->getName()} created");
 
             return $this->redirectToRoute('venueList');
         }
