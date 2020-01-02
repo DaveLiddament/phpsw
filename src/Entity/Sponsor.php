@@ -190,4 +190,9 @@ class Sponsor
 
         return $this;
     }
+
+    public function canDelete(): bool
+    {
+        return $this->events->isEmpty();
+    }
 }

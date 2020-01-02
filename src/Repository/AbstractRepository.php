@@ -24,12 +24,22 @@ abstract class AbstractRepository
     }
 
     /**
-     * @param T $event
+     * @param T $entity
      */
-    final public function persist($event): void
+    final public function persist($entity): void
     {
         $manager = $this->getObjectManager();
-        $manager->persist($event);
+        $manager->persist($entity);
+        $manager->flush();
+    }
+
+    /**
+     * @param T $entity
+     */
+    protected function delete($entity): void
+    {
+        $manager = $this->getObjectManager();
+        $manager->remove($entity);
         $manager->flush();
     }
 

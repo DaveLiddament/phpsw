@@ -1,0 +1,17 @@
+{% extends 'admin/base.html.twig' %}
+
+
+{% set menuItem = 'sponsors' %}
+{% block body %}
+
+    <h1>Delete sponsor: {{ sponsor.name }}</h1>
+
+    <p class="warning">Are you sure you want to delete sponsor ({{ sponsor.name }})? </p>
+
+    <form method="post">
+        <input type="submit" role="button" value="Delete" class="btn btn-danger">
+    </form>
+
+    Back to <a href="{{ url('sponsorList') }}">sponsor list</a>.
+
+{% endblock %}

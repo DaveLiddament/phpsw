@@ -10,11 +10,13 @@ use Webmozart\Assert\Assert;
  */
 class VenueRepository extends AbstractRepository
 {
-    public function delete(Venue $venue): void
+    /**
+     * @param Venue $venue
+     */
+    public function delete($venue): void
     {
         Assert::true($venue->canDelete());
-        $this->getObjectManager()->remove($venue);
-        $this->getObjectManager()->flush();
+        parent::delete($venue);
     }
 
     /**

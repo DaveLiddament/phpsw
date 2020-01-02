@@ -1,0 +1,18 @@
+{% extends 'admin/base.html.twig' %}
+
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+
+{% set menuItem = 'sponsors' %}
+{% block body %}
+
+    {% if isCreate %}
+        <h1>Create Sponsor</h1>
+    {% else %}
+        <h1>Update Sponsor</h1>
+    {% endif %}
+
+    {{ form(form) }}
+
+    Back to <a href="{{ url('sponsorList') }}">sponsor list</a>.
+
+{% endblock %}

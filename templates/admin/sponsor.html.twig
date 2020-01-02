@@ -1,0 +1,56 @@
+{% extends 'admin/base.html.twig' %}
+
+
+{% set menuItem = 'sponsors' %}
+{% block body %}
+
+    <h1>Sponsor {{ sponsor.name }}</h1>
+
+    <table class="table">
+        <tbody>
+        <tr>
+            <th>Type</th>
+            <td>{{ sponsor.sponsorType }}</td>
+        </tr>
+        <tr>
+            <th>Current Sponsor</th>
+            <td>{% if sponsor.currentSponsor %}Yes{% else %}No{% endif %}</td>
+        </tr>
+        <tr>
+            <th>Logo URL</th>
+            <td><a href="{{ sponsor.logoUrl }}" target="_blank">{{ sponsor.logoUrl }}</a></td>
+        </tr>
+        <tr>
+            <th class="">Website URL</th>
+            <td><a href="{{ sponsor.websiteUrl }}" target="_blank">{{ sponsor.websiteUrl }}</a></td>
+        </tr>
+        <tr>
+            <th>Description</th>
+            <td>{{ sponsor.description }}</td>
+        </tr>
+
+        {% if sponsor.events.count > 0 %}
+            <tr>
+                <th>Events</th>
+                <td>
+                    {% for event in sponsor.events %}
+                        {{ event.name }}<br>
+                    {% endfor %}
+                </td>
+            </tr>
+        {% endif %}
+
+        </tbody>
+
+    </table>
+
+    <p>
+        <a href="{{ url('sponsorUpdate', {'sponsor' : sponsor.id}) }}" class="btn btn-info" role="button">Edit</a>
+        {% if sponsor.canDelete %}
+            <a href="{{ url('sponsorDelete', {'sponsor' : sponsor.id}) }}" class="btn btn-danger" role="button">Delete</a>
+        {% endif %}
+    </p>
+
+    Back to <a href="{{ url('sponsorList') }}">sponsor list</a>.
+
+{% endblock %}

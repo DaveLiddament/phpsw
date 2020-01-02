@@ -1,0 +1,42 @@
+{% extends 'admin/base.html.twig' %}
+
+
+{% set menuItem = 'sponsors' %}
+{% block body %}
+
+    <h1>Sponsors</h1>
+
+    {% if sponsors %}
+        <table class="table">
+            <thead class="thead-light">
+                <tr>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th>Current Sponsor</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for sponsor in sponsors %}
+                <tr>
+                    <td><a href="{{ url('sponsorRead', {'sponsor' : sponsor.id}) }}">{{ sponsor.name }}</a> </td>
+                    <td>{{ sponsor.sponsorType }}</td>
+                    <td>{% if sponsor.currentSponsor %}YES{% endif %}</td>
+                    <td>
+                        <a href="{{ url('sponsorUpdate', {'sponsor' : sponsor.id}) }}" class="btn btn-info" role="button">Edit</a>
+                        {% if sponsor.canDelete %}
+                            <a href="{{ url('sponsorDelete', {'sponsor' : sponsor.id}) }}" class="btn btn-danger" role="button">Delete</a>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+
+        </table>
+    {% else %}
+        <p>There are no sponsors.</p>
+    {% endif %}
+
+    <a href="{{ url('sponsorCreate') }}" class="btn btn-info" type="button">Create sponsor</a>
+
+{% endblock %}
