@@ -87,7 +87,7 @@ class Talk
         return $this->id;
     }
 
-    public function getTitle(): ?string
+    public function getTitle(): string
     {
         return $this->title;
     }
@@ -190,7 +190,7 @@ class Talk
         return $this;
     }
 
-    public function getShowcase(): bool
+    public function isShowcase(): bool
     {
         return $this->showcase;
     }

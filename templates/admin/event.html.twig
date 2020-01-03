@@ -10,7 +10,7 @@
         <tbody>
         <tr>
             <th>Date</th>
-            <td>{{ event.date|date('D jS M Y')}}</td>
+            <td>{{ event.date|date('D jS M Y') }}</td>
         </tr>
         <tr>
             <th class="">Meetup ID</th>
@@ -21,16 +21,16 @@
             <td>{{ event.description }}</td>
         </tr>
         {% if event.venue %}
-        <tr>
-            <th>Venue</th>
-            <td><a href="{{ url('venueRead', {'venue': event.venue.id}) }}">{{ event.venue.name }}</a></td>
-        </tr>
+            <tr>
+                <th>Venue</th>
+                <td><a href="{{ url('venueRead', {'venue': event.venue.id}) }}">{{ event.venue.name }}</a></td>
+            </tr>
         {% endif %}
         {% if event.pub %}
-        <tr>
-            <th>Pub</th>
-            <td><a href="{{ url('venueRead', {'venue': event.pub.id}) }}">{{ event.pub.name }}</a></td>
-        </tr>
+            <tr>
+                <th>Pub</th>
+                <td><a href="{{ url('venueRead', {'venue': event.pub.id}) }}">{{ event.pub.name }}</a></td>
+            </tr>
         {% endif %}
 
         {% if event.organisers.count > 0 %}
@@ -38,7 +38,7 @@
                 <th>Organisers</th>
                 <td>
                     {% for organiser in event.organisers %}
-                        {{ organiser.name }}<br>
+                        <a href="{{ url('personRead', { person: organiser.id}) }}">{{ organiser.name }}</a><br>
                     {% endfor %}
                 </td>
             </tr>
@@ -56,4 +56,42 @@
 
     Back to <a href="{{ url('eventList') }}">event list</a>.
 
+    <hr>
+
+    <h2>Talks</h2>
+
+    {% if event.talks.count == 0 %}
+        <p>No talks</p>
+    {% else %}
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Title</th>
+                <th>Speaker(s)</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for talk in event.talks %}
+                <tr>
+                    <td><a href="{{ url('talkRead', {talk: talk.id}) }}">{{ talk.title }}</a></td>
+                    <td>
+                        {% for speaker in talk.speakers %}
+                            <a href="{{ url('personRead', { person: speaker.id }) }}">{{ speaker.name }}</a><br>
+                        {% endfor %}
+                    </td>
+                    <td>
+                        <a href="{{ url('talkUpdate', {'talk' : talk.id}) }}" class="btn btn-info" role="button">Edit</a>
+                        <a href="{{ url('talkDelete', {'talk' : talk.id}) }}" class="btn btn-danger" role="button">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+    {% endif %}
+
+    <p>
+        <a href="{{ url('talkCreate', {event: event.id}) }}" class="btn btn-info" type="button">Create talk</a>
+    </p>
 {% endblock %}

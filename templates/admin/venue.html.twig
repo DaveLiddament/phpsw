@@ -34,7 +34,7 @@
                 <th>Events</th>
                 <td>
                     {% for event in venue.events %}
-                        {{ event.name }}<br>
+                        {{ event.title }}<br>
                     {% endfor %}
                 </td>
             </tr>
@@ -45,7 +45,7 @@
                 <th>Pubs</th>
                 <td>
                     {% for pub in venue.pubs %}
-                        {{ pub.name }}<br>
+                        {{ pub.title }}<br>
                     {% endfor %}
                 </td>
             </tr>
