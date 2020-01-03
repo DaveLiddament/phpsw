@@ -4,7 +4,7 @@
 {% set menuItem = 'sponsors' %}
 {% block body %}
 
-    <h1>Sponsor {{ sponsor.name }}</h1>
+    <h1>Sponsor: {{ sponsor.name }}</h1>
 
     <table class="table">
         <tbody>
@@ -34,7 +34,7 @@
                 <th>Events</th>
                 <td>
                     {% for event in sponsor.events %}
-                        {{ event.name }}<br>
+                        {{ event.title }} ({{ event.date|date("M Y") }})<br>
                     {% endfor %}
                 </td>
             </tr>

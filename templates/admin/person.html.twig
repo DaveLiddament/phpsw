@@ -4,7 +4,7 @@
 {% set menuItem = 'persons' %}
 {% block body %}
 
-    <h1>Person {{ person.name }}</h1>
+    <h1>Person: {{ person.name }}</h1>
 
     <table class="table">
         <tbody>
@@ -50,7 +50,7 @@
                 <th>Talks</th>
                 <td>
                     {% for talk in person.talks %}
-                        {{ talk.name }}<br>
+                        <a href="{{ url('talkRead', {'talk' : talk.id }) }}">{{ talk.title }}</a><br>
                     {% endfor %}
                 </td>
             </tr>
@@ -61,7 +61,7 @@
                 <th>Events organised</th>
                 <td>
                     {% for event in person.events %}
-                        {{ event.name }}<br>
+                        <a href="{{ url('eventRead', {'event' : event.id}) }}"> {{ event.title}}</a><br>
                     {% endfor %}
                 </td>
             </tr>

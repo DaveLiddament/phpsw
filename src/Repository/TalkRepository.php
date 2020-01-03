@@ -9,6 +9,18 @@ use App\Entity\Talk;
  */
 class TalkRepository extends AbstractRepository
 {
+    /**
+     * @param Talk $talk
+     */
+    public function delete($talk): void
+    {
+        foreach ($talk->getSpeakers() as $speaker) {
+            $talk->removeSpeaker($speaker);
+        }
+        $talk->getEvent()->removeTalk($talk);
+        parent::delete($talk);
+    }
+
     protected function getClassType(): string
     {
         return Talk::class;

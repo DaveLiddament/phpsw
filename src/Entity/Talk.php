@@ -74,9 +74,12 @@ class Talk
      */
     private $showcase;
 
-    public function __construct()
+    public function __construct(string $title, Event $event)
     {
         $this->speakers = new ArrayCollection();
+        $this->setTitle($title);
+        $this->event = $event;
+        $this->showcase = false;
     }
 
     public function getId(): ?int
@@ -84,7 +87,7 @@ class Talk
         return $this->id;
     }
 
-    public function getTitle(): ?string
+    public function getTitle(): string
     {
         return $this->title;
     }
@@ -111,13 +114,6 @@ class Talk
     public function getEvent(): Event
     {
         return $this->event;
-    }
-
-    public function setEvent(Event $event): self
-    {
-        $this->event = $event;
-
-        return $this;
     }
 
     public function getOriginalRelativeUrl(): ?string
@@ -194,7 +190,7 @@ class Talk
         return $this;
     }
 
-    public function getShowcase(): ?bool
+    public function isShowcase(): bool
     {
         return $this->showcase;
     }
