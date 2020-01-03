@@ -224,7 +224,6 @@ class Event
     {
         if (!$this->talks->contains($talk)) {
             $this->talks[] = $talk;
-            $talk->setEvent($this);
         }
 
         return $this;
