@@ -12,6 +12,8 @@ use Webmozart\Assert\Assert;
  */
 class Person
 {
+    use SluggerTrait;
+
     public const ORGANISER_USER = 'organiser';
     public const HELPER_USER = 'helper';
     public const NORMAL_USER = 'normal';
@@ -28,6 +30,12 @@ class Person
      * @ORM\Column(type="integer")
      */
     private $id;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255)
+     */
+    private $slug;
 
     /**
      * @var string
@@ -128,6 +136,7 @@ class Person
     public function setName(string $name): self
     {
         $this->name = $name;
+        $this->slug = $this->asSlug($name);
 
         return $this;
     }
@@ -284,5 +293,10 @@ class Person
     public function canDelete(): bool
     {
         return $this->talks->isEmpty() && $this->events->isEmpty();
+    }
+
+    public function getSlug(): string
+    {
+        return $this->slug;
     }
 }

@@ -12,6 +12,8 @@ use Webmozart\Assert\Assert;
  */
 class Venue
 {
+    use SluggerTrait;
+
     public const TALK_VENUE = 'talk venue';
     public const PUB_VENUE = 'pub venue';
     public const VALID_VENUE_TYPES = [
@@ -32,6 +34,12 @@ class Venue
      * @ORM\Column(type="string", length=255)
      */
     private $name;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255)
+     */
+    private $slug;
 
     /**
      * @var string
@@ -79,11 +87,10 @@ class Venue
     {
         $this->pubs = new ArrayCollection();
         $this->events = new ArrayCollection();
-        $this->name = $name;
-        $this->address = $address;
-        $this->postcode = $postcode;
-        $this->type = $type;
-        $this->validate();
+        $this->setName($name);
+        $this->setAddress($address);
+        $this->setPostcode($postcode);
+        $this->setType($type);
     }
 
     public function getId(): ?int
@@ -99,6 +106,7 @@ class Venue
     public function setName(string $name): self
     {
         $this->name = $name;
+        $this->slug = $this->asSlug($name);
 
         return $this;
     }
@@ -151,15 +159,15 @@ class Venue
         return $this;
     }
 
-    public function getType(): ?string
+    public function getType(): string
     {
         return $this->type;
     }
 
     public function setType(string $type): self
     {
+        Assert::oneOf($type, self::VALID_VENUE_TYPES);
         $this->type = $type;
-        $this->validate();
 
         return $this;
     }
@@ -231,8 +239,8 @@ class Venue
         return ($this->getEvents()->isEmpty()) && ($this->getPubs()->isEmpty());
     }
 
-    private function validate(): void
+    public function getSlug(): string
     {
-        Assert::oneOf($this->type, self::VALID_VENUE_TYPES);
+        return $this->slug;
     }
 }

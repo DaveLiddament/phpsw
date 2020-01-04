@@ -11,6 +11,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Talk
 {
+    use SluggerTrait;
+
     /**
      * @var int
      * @ORM\Id()
@@ -18,6 +20,12 @@ class Talk
      * @ORM\Column(type="integer")
      */
     private $id;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255)
+     */
+    private $slug;
 
     /**
      * @var string
@@ -95,6 +103,7 @@ class Talk
     public function setTitle(string $title): self
     {
         $this->title = $title;
+        $this->slug = $this->asSlug($title);
 
         return $this;
     }
@@ -193,6 +202,11 @@ class Talk
     public function isShowcase(): bool
     {
         return $this->showcase;
+    }
+
+    public function getSlug(): string
+    {
+        return $this->slug;
     }
 
     public function setShowcase(bool $showcase): self
