@@ -1,0 +1,41 @@
+<div class="bg-grey-lightest">
+    <div class="container mx-auto sm:px-4">
+        <div class="nav bg-grey-lightest hidden sm:flex absolute sm:relative z-20 w-full sm:w-auto border border-grey-lighter sm:border-none">
+            <div class="flex-auto">
+                <a class="nav-item block sm:float-left py-3 px-4 text-sm text-grey hover:text-grey-darkest sm:py-4 {{ page == 'home' ? 'bg-grey-lighter' }}" href="{{ url('home') }}">Home</a>
+                <a class="nav-item block sm:float-left py-3 px-4 text-sm text-grey hover:text-grey-darkest sm:py-4 {{ page matches '/^(talk|events?)$/' ? 'bg-grey-lighter' }}" href="{{ url('events') }}">Events</a>
+                <a class="nav-item block sm:float-left py-3 px-4 text-sm text-grey hover:text-grey-darkest sm:py-4 {{ page matches '/speakers?/' ? 'bg-grey-lighter' }}" href="{{ url('speakers') }}">Speakers</a>
+                <a class="nav-item block sm:float-left py-3 px-4 text-sm text-grey hover:text-grey-darkest sm:py-4 {{ page == 'sponsors' ? 'bg-grey-lighter' }}" href="{{ url('sponsors') }}">Sponsors</a>
+                <a class="nav-item block sm:float-left py-3 px-4 text-sm text-grey hover:text-grey-darkest sm:py-4 {{ page == 'talks' ? 'bg-grey-lighter' }}" href="{{ url('talks') }}">Talks</a>
+            </div>
+
+            <div class="sm:flex items-center">
+                <div>
+                    <a href="https://www.meetup.com/php-sw/members"
+                       class="text-sm text-grey hover:text-grey-darkest py-3 px-3 hidden lg:block transition">
+                        <i class="fa fa-group mr-1"></i>
+                        579 members
+                    </a>
+                </div>
+
+                <div>
+                    <a href="https://www.meetup.com/php-sw/about/comments/?op=all"
+                       class="text-sm text-grey hover:text-grey-darkest py-3 ml-2 hidden lg:block transition">
+                        <i class="fa fa-thumbs-o-up mr-1"></i>
+                        4.7/5 from 139 ratings
+                    </a>
+                </div>
+
+                <div>
+                    <a href="https://twitter.com/phpsw" class="text-grey hover:text-grey-darkest px-4 py-3 block sm:ml-4 sm:px-0 transition">
+                        {% include "svg/twitter.html.twig" with { class: 'fill-current w-4 h-4' } %}
+                    </a>
+                </div>
+
+                <div class="block py-2 ml-4">
+                    <a href="https://www.meetup.com/php-sw" class="button bg-red hover:bg-red-dark">Join group</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
