@@ -7,6 +7,7 @@ namespace App\Legacy\Importer;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Webmozart\Assert\Assert;
 
 class Importer extends Command
 {
@@ -65,6 +66,7 @@ class Importer extends Command
                 try {
                     $fileContents = file_get_contents($filename);
                     $entityData = json_decode($fileContents, true);
+                    Assert::isArray($entityData);
                     $entity = $importer->import($entityData, $importedData);
                     $importedData[$directory][$slug] = $entity;
                 } catch (\Throwable $throwable) {

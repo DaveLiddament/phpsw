@@ -12,12 +12,12 @@ class SponsorImporter extends EntityImporter
     {
         $sponsor = new Sponsor(
             $entityData['name'],
-            Sponsor::FULL,
+            $entityData['sponsor-type'],
             $entityData['logo-url'],
             $entityData['website-url'],
         );
 
-        $sponsor->setCurrentSponsor(false);
+        $sponsor->setCurrentSponsor($entityData['current']);
 
         return $this->persistIfNew(Sponsor::class, $sponsor, 'name', $sponsor->getName());
     }
