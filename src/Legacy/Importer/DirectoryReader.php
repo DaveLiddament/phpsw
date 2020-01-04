@@ -19,7 +19,7 @@ class DirectoryReader
      */
     public function getFileNameMappings(string $directory): array
     {
-        return $this->getDirectoryContentsRecursively(__DIR__ . "/../../../data/$directory");
+        return $this->getDirectoryContentsRecursively(__DIR__."/../../../data/$directory");
     }
 
     private function getDirectoryContentsRecursively(string $directory): array

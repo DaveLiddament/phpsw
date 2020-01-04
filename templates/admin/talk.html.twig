@@ -1,7 +1,7 @@
 {% extends 'admin/base.html.twig' %}
 
 
-{% set menuItem = 'talks' %}
+{% set menuItem = 'events' %}
 {% block body %}
 
     <h1>Talk: {{ talk.title }}</h1>
@@ -14,7 +14,7 @@
         </tr>
         <tr>
             <th>Event</th>
-            <td>{{ talk.event.title }}</td>
+            <td><a href="{{ url('eventRead', {'event' : talk.event.id}) }}">{{ talk.event.title }}</a></td>
         </tr>
         <tr>
             <th>Redirect URL</th>
@@ -43,7 +43,7 @@
             <th>Speakers</th>
             <td>
                 {% for speaker in talk.speakers %}
-                    <a href="{{ url('personRead', {'person' : person.id}) }}"{{ speaker.name }}<br>
+                    <a href="{{ url('personRead', { person: speaker.id }) }}">{{ speaker.name }}</a><br>
                 {% endfor %}
             </td>
         </tr>

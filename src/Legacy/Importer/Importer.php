@@ -16,7 +16,7 @@ class Importer extends Command
     public const SPONSOR = 'sponsors';
     public const TALK = 'talks';
 
-    protected static $defaultName = "phpsw:legacy:import";
+    protected static $defaultName = 'phpsw:legacy:import';
 
     /**
      * @var DirectoryReader
@@ -67,12 +67,10 @@ class Importer extends Command
                     $entityData = json_decode($fileContents, true);
                     $entity = $importer->import($entityData, $importedData);
                     $importedData[$directory][$slug] = $entity;
-                } catch(\Throwable $throwable) {
+                } catch (\Throwable $throwable) {
                     $output->writeln("$directory, $slug");
                     $output->writeln($throwable->getMessage());
-                    foreach($throwable->getTrace() as $line) {
-                        $output->writeln($line);
-                    }
+
                     return 1;
                 }
             }

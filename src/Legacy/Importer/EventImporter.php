@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Legacy\Importer;
 
 use App\Entity\Event;
+use DateTimeImmutable;
 
 class EventImporter extends EntityImporter
 {
@@ -12,11 +13,11 @@ class EventImporter extends EntityImporter
     {
         $event = new Event(
             $entityData['title'],
-            \DateTimeImmutable::createFromFormat('d M Y', $entityData['date'])
+            DateTimeImmutable::createFromFormat('d M Y', $entityData['date'])
         );
 
-        if (isset($entityData['meetupId'])) {
-            $event->setMeetupId((string) $entityData['meetupId']);
+        if (isset($entityData['meetup-id'])) {
+            $event->setMeetupId((string) $entityData['meetup-id']);
         }
 
         $event->setDescription($entityData['description'] ?? null);
@@ -24,16 +25,15 @@ class EventImporter extends EntityImporter
         $event->setPub($this->lookup(Importer::VENUE, 'pub', $entityData, $importedData));
 
         $sponsors = $entityData['sponsors'] ?? [];
-        foreach($sponsors as $sponsor) {
+        foreach ($sponsors as $sponsor) {
             $event->addSponsor($this->lookupValue(Importer::SPONSOR, $sponsor, $importedData));
         }
 
         $organisers = $entityData['organisers'] ?? [];
-        foreach($organisers as $organiser) {
+        foreach ($organisers as $organiser) {
             $event->addOrganiser($this->lookupValue(Importer::PERSON, $organiser, $importedData));
         }
 
         return $this->persistIfNew(Event::class, $event, 'date', $event->getDate());
     }
-
 }

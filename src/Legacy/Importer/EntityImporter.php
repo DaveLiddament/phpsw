@@ -25,12 +25,14 @@ abstract class EntityImporter
         $foundEntity = $repository->findOneBy([$fieldName => $value]);
         if (null === $foundEntity) {
             $this->persist($entity);
+
             return $entity;
         }
+
         return $foundEntity;
     }
 
-    private function persist(object $entity): void
+    protected function persist(object $entity): void
     {
         $manager = $this->entityManager->getManager();
         $manager->persist($entity);
@@ -46,10 +48,11 @@ abstract class EntityImporter
 
     protected function lookup(string $type, string $key, array $entityData, array $importedData)
     {
-        $slug = $entityData[$key];
+        $slug = $entityData[$key] ?? '';
         if (empty($slug)) {
             return null;
         }
+
         return $this->lookupValue($type, $slug, $importedData);
     }
 
