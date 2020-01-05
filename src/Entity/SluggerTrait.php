@@ -12,6 +12,6 @@ trait SluggerTrait
     {
         $slugger = new AsciiSlugger();
 
-        return $slugger->slug($value)->toString();
+        return strtolower($slugger->slug($value)->toString());
     }
 }
