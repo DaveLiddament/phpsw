@@ -18,6 +18,11 @@ class PersonRepository extends AbstractRepository
         return $this->getRepository()->findBy([], ['name' => 'ASC']);
     }
 
+    public function findBySlug(string $slug): ?Person
+    {
+        return $this->getRepository()->findOneBy(['slug' => $slug]);
+    }
+
     /**
      * @param Person $person
      */

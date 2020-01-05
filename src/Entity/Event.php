@@ -12,6 +12,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Event
 {
+    use SluggerTrait;
+
     /**
      * @var int
      * @ORM\Id()
@@ -19,6 +21,12 @@ class Event
      * @ORM\Column(type="integer")
      */
     private $id;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=280)
+     */
+    private $slug;
 
     /**
      * @var string|null
@@ -79,8 +87,9 @@ class Event
         $this->organisers = new ArrayCollection();
         $this->sponsors = new ArrayCollection();
         $this->talks = new ArrayCollection();
-        $this->setTitle($title);
-        $this->setDate($date);
+        $this->title = $title;
+        $this->date = $date;
+        $this->updateSlug();
     }
 
     public function getId(): ?int
@@ -108,6 +117,7 @@ class Event
     public function setDate(DateTimeImmutable $date): self
     {
         $this->date = $date;
+        $this->updateSlug();
 
         return $this;
     }
@@ -120,6 +130,7 @@ class Event
     public function setTitle(string $title): self
     {
         $this->title = $title;
+        $this->updateSlug();
 
         return $this;
     }
@@ -241,5 +252,16 @@ class Event
     public function canDelete(): bool
     {
         return $this->talks->isEmpty();
+    }
+
+    public function getSlug(): string
+    {
+        return $this->slug;
+    }
+
+    private function updateSlug(): void
+    {
+        $raw = "{$this->date->format('Y-m')} {$this->title}";
+        $this->slug = $this->asSlug($raw);
     }
 }

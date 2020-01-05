@@ -14,7 +14,7 @@ class VenueImporter extends EntityImporter
             $entityData['name'],
             $entityData['address'],
             $entityData['postcode'],
-            Venue::TALK_VENUE,
+            $entityData['type'],
         );
 
         $venue->setMapsUrl($entityData['maps-url'] ?? null);

@@ -12,6 +12,8 @@ use Webmozart\Assert\Assert;
  */
 class Sponsor
 {
+    use SluggerTrait;
+
     public const FULL = 'full';
     public const VENUE = 'venue';
 
@@ -28,6 +30,13 @@ class Sponsor
      * @ORM\Column(type="integer")
      */
     private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string", length=255)
+     */
+    private $slug;
 
     /**
      * @var string
@@ -100,6 +109,7 @@ class Sponsor
     public function setName(string $name): self
     {
         $this->name = $name;
+        $this->slug = $this->asSlug($name);
 
         return $this;
     }
@@ -194,5 +204,10 @@ class Sponsor
     public function canDelete(): bool
     {
         return $this->events->isEmpty();
+    }
+
+    public function getSlug(): string
+    {
+        return $this->slug;
     }
 }
