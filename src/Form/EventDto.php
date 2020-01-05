@@ -42,6 +42,12 @@ class EventDto
     public $meetupId;
 
     /**
+     * @var string|null
+     * @Constraints\Length(max="255")
+     */
+    public $originalRelativeUrl;
+
+    /**
      * @var Venue|null
      */
     public $venue;
@@ -66,6 +72,7 @@ class EventDto
         $eventDto->description = $event->getDescription();
         $eventDto->venue = $event->getVenue();
         $eventDto->pub = $event->getPub();
+        $eventDto->originalRelativeUrl = $event->getOriginalRelativeUrl();
 
         return$eventDto;
     }
@@ -88,6 +95,7 @@ class EventDto
         $event->setDescription($this->description);
         $event->setVenue($this->venue);
         $event->setPub($this->pub);
+        $event->setOriginalRelativeUrl($this->originalRelativeUrl);
 
         return $event;
     }

@@ -5,10 +5,13 @@ declare(strict_types=1);
 namespace App\Legacy\Importer;
 
 use App\Entity\Event;
+use App\Entity\SluggerTrait;
 use DateTimeImmutable;
 
 class EventImporter extends EntityImporter
 {
+    use SluggerTrait;
+
     public function import(array $entityData, array $importedData): object
     {
         $event = new Event(
@@ -18,6 +21,8 @@ class EventImporter extends EntityImporter
 
         if (isset($entityData['meetup-id'])) {
             $event->setMeetupId((string) $entityData['meetup-id']);
+            $raw = "{$event->getMeetupId()}-{$event->getTitle()}";
+            $event->setOriginalRelativeUrl($this->asSlug($raw));
         }
 
         $event->setDescription($entityData['description'] ?? null);

@@ -23,6 +23,12 @@ class Event
     private $id;
 
     /**
+     * @var string|null
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $originalRelativeUrl;
+
+    /**
      * @var string
      * @ORM\Column(type="string", length=280)
      */
@@ -263,5 +269,15 @@ class Event
     {
         $raw = "{$this->date->format('Y-m')} {$this->title}";
         $this->slug = $this->asSlug($raw);
+    }
+
+    public function getOriginalRelativeUrl(): ?string
+    {
+        return $this->originalRelativeUrl;
+    }
+
+    public function setOriginalRelativeUrl(?string $originalRelativeUrl): void
+    {
+        $this->originalRelativeUrl = $originalRelativeUrl;
     }
 }
