@@ -14,14 +14,14 @@
 
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="{{ url('adminHome') }}"><img src="{{ asset('/resources/images/phpsw-logo.png') }}" alt="PHP-SW logo" height="40px"> </a>
+    <a class="navbar-brand" href="{{ url('home') }}"><img src="{{ asset('/resources/images/phpsw-logo.png') }}" alt="PHP-SW logo" height="40px"> </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
     {% set navOptions =
         [
-            ['home', 'adminHome', 'Home'],
+            ['home', 'adminHome', 'Admin Home'],
             ['people', 'personList', 'People'],
             ['events', 'eventList', 'Events'],
             ['sponsors', 'sponsorList', 'Sponsors'],

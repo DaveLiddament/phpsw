@@ -27,6 +27,27 @@ class SponsorRepository extends AbstractRepository
         return $this->getRepository()->findBy([], ['name' => 'ASC']);
     }
 
+    /**
+     * @return Sponsor[]
+     */
+    public function findCurrentSponsors(): iterable
+    {
+        return $this->getRepository()->findBy([
+            'currentSponsor' => true,
+        ]);
+    }
+
+    /**
+     * @return Sponsor[]
+     */
+    public function findCurrentSponsorsOfType(string $type): iterable
+    {
+        return $this->getRepository()->findBy([
+            'currentSponsor' => true,
+            'sponsorType' => $type,
+        ]);
+    }
+
     protected function getClassType(): string
     {
         return Sponsor::class;

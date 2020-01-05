@@ -32,6 +32,18 @@ class PersonRepository extends AbstractRepository
         parent::delete($person);
     }
 
+    /**
+     * @return Person
+     */
+    public function findOrganisers(): iterable
+    {
+        return $this->getRepository()->findBy([
+            'type' => Person::ORGANISER_USER,
+        ], [
+            'name' => 'ASC'
+        ]);
+    }
+
     protected function getClassType(): string
     {
         return Person::class;
