@@ -52,6 +52,7 @@
         {% if event.canDelete %}
             <a href="{{ url('eventDelete', {'event' : event.id}) }}" class="btn btn-danger" role="button">Delete</a>
         {% endif %}
+        <a href="{{ url('event', {'slug' : event.slug}) }}" class="btn btn-success" role="button">View on website</a>
     </p>
 
     Back to <a href="{{ url('eventList') }}">event list</a>.

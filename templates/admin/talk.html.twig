@@ -55,6 +55,7 @@
     <p>
         <a href="{{ url('talkUpdate', {'talk' : talk.id}) }}" class="btn btn-info" role="button">Edit</a>
         <a href="{{ url('talkDelete', {'talk' : talk.id}) }}" class="btn btn-danger" role="button">Delete</a>
+        <a href="{{ url('talk', {'slug' : talk.slug}) }}" class="btn btn-success" role="button">View on website</a>
     </p>
 
     Back to <a href="{{ url('eventRead', {'event' : talk.event.id}) }}">talk's event</a>.

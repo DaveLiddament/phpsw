@@ -7,5 +7,68 @@
     <h1>Dashboard</h1>
 
 
+        <div class="card">
+            <div class="card-header">
+                Latest Event
+            </div>
+            <div class="card-body">
+                {% if latestEvent %}
+                    <h5 class="card-title">{{ latestEvent.title }} ({{ latestEvent.date|date("jS M Y") }})
+                        <a href="{{ url('eventUpdate', {'event' : latestEvent.id}) }}" role="button"
+                           class="btn btn-info">Edit</a>
+                    </h5>
+                    <p class="card-text">{{ latestEvent.description }}</p>
+                    <ul>
+                        {% for talk in latestEvent.talks %}
+                            <li><a href="{{ url('talkRead', {'talk' : talk.id}) }}"> {{ talk.title }}</a></li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+                <p><a href="{{ url('eventCreate') }}" role="button" class="btn btn-info">Create new event</a></p>
+            </div>
+        </div>
+
+
+
+        <div class="card">
+            <div class="card-header">
+                Showcase talks
+            </div>
+            <div class="card-body">
+                    <ul>
+                        {% for talk in showCaseTalk %}
+                            <li><a href="{{ url('talkRead', {'talk' : talk.id}) }}"> {{ talk.title }}</a></li>
+                        {% endfor %}
+                    </ul>
+            </div>
+        </div>
+
+    <div class="card">
+        <div class="card-header">
+            Organisers
+        </div>
+        <div class="card-body">
+            <ul>
+                {% for organiser in organisers %}
+                    <li><a href="{{ url('personRead', {'person' : organiser.id}) }}"> {{ organiser.name }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        <p><a href="{{ url('personList') }}" role="button" class="btn btn-info">View all people</a></p>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            Current sponsors
+        </div>
+        <div class="card-body">
+            <ul>
+                {% for sponsor in sponsors %}
+                    <li><a href="{{ url('sponsorRead', {'sponsor' : sponsor.id}) }}"> {{sponsor.name }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        <p><a href="{{ url('sponsorList') }}" role="button" class="btn btn-info">View all sponsors</a></p>
+    </div>
 
 {% endblock %}

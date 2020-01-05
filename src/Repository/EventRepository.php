@@ -41,6 +41,20 @@ class EventRepository extends AbstractRepository
         ]);
     }
 
+    public function findLatest(): ?Event
+    {
+        $events = $this->getRepository()->findBy(
+            [
+            ],
+            [
+                'date' => 'DESC',
+            ],
+            1
+        );
+
+        return $events[0] ?? null;
+    }
+
     protected function getClassType(): string
     {
         return Event::class;

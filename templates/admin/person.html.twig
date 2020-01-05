@@ -76,6 +76,7 @@
         {% if person.canDelete %}
             <a href="{{ url('personDelete', {'person' : person.id}) }}" class="btn btn-danger" role="button">Delete</a>
         {% endif %}
+        <a href="{{ url('speaker', {'slug' : person.slug}) }}" class="btn btn-success" role="button">View on website</a>
     </p>
 
     Back to <a href="{{ url('personList') }}">person list</a>.
