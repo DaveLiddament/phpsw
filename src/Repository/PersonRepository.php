@@ -33,14 +33,14 @@ class PersonRepository extends AbstractRepository
     }
 
     /**
-     * @return Person
+     * @return Person[]
      */
     public function findOrganisers(): iterable
     {
         return $this->getRepository()->findBy([
             'type' => Person::ORGANISER_USER,
         ], [
-            'name' => 'ASC'
+            'name' => 'ASC',
         ]);
     }
 

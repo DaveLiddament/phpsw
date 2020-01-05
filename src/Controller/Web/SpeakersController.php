@@ -18,6 +18,7 @@ class SpeakersController extends AbstractController
     public function speakers(PersonRepository $personRepository): Response
     {
         $speakers = $personRepository->findAll();
+
         return $this->render('speakers.html.twig', [
             'page' => 'speakers',
             'speakers' => $speakers,
