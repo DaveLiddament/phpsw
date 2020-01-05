@@ -27,6 +27,9 @@ class EventDtoType extends AbstractType
             ->add('meetupId', TextType::class, [
                 'required' => false,
             ])
+            ->add('originalRelativeUrl', TextType::class, [
+                'required' => false,
+            ])
             ->add('venue', EntityType::class, [
                 'class' => Venue::class,
                 'choice_label' => 'name',
