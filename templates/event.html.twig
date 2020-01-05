@@ -13,7 +13,7 @@
                 <h1>{{ event.title }}</h1>
 
                 <span class="inline-block mt-1 lg:ml-2 text-xl lg:text-2xl text-grey-light font-normal">
-                    {{ eventDate(event) }}
+                    {{ event.date|date('M Y') }}
                 </span>
             </div>
 

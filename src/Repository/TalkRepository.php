@@ -21,6 +21,23 @@ class TalkRepository extends AbstractRepository
         parent::delete($talk);
     }
 
+    /**
+     * @return Talk[]
+     */
+    public function findShowCase(): iterable
+    {
+        return $this->getRepository()->findBy([
+            'showcase' => true,
+        ]);
+    }
+
+    public function findBySlug(string $slug): ?Talk
+    {
+        return $this->getRepository()->findOneBy([
+            'slug' => $slug,
+        ]);
+    }
+
     protected function getClassType(): string
     {
         return Talk::class;

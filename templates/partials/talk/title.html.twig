@@ -2,6 +2,6 @@
     {{ talk.title }}
 
     <span class="inline-block text-xl lg:text-2xl text-grey-light font-normal">
-        {{ talk.event.title }} - {{ eventDate(talk.event) }}
+        {{ talk.event.title }} - {{ talk.event.date|date('M Y') }}
     </span>
 </h1>

@@ -1,12 +1,12 @@
 <div class="flex items-baseline mb-2">
     <h2>
-        <a href="{{ eventUrl(event) }}" class="link">
+        <a href="{{ url('event', {'slug' : event.slug}) }}" class="link">
             {{ event.title }}
         </a>
     </h2>
 
     <span class="text-sm text-grey-light ml-2">
-        {{ eventDate(event) }}
+        {{ event.date|date('M Y') }}
     </span>
 </div>
 

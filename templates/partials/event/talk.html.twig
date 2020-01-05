@@ -1,7 +1,7 @@
 <div class="flex flex-row-reverse items-center">
     <div class="flex-1">
         <h3 class="mb-2">
-            <a href="{{ talkUrl(talk) }}">
+            <a href="{{ url('talk', {'slug' : talk.slug}) }}">
                 {{ talk.title }}
             </a>
         </h3>

@@ -1,15 +1,17 @@
 <div class="mb-8 flex flex-row-reverse">
     <div class="flex-1">
         <h2 class="mb-1">
-            <a href="{{ talkUrl(talk) }}" class="link">
+            <a href="{{ url('talk', {'slug' : talk.slug}) }}" class="link">
                 {{ talk.title }}
             </a>
         </h2>
 
         <div class="mb-2">
-            <a href="{{ personUrl(talk.speakers[0]) }}" class="text-sm link">
-                {{ talk.speakers[0].name }}
+            {% for speaker in talk.speakers %}
+            <a href="{{ url('speaker', { 'slug': speaker.slug }) }}" class="text-sm link">
+                {{ speaker.name }}
             </a>
+            {% endfor %}
         </div>
 
         <div>

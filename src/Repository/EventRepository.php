@@ -27,6 +27,20 @@ class EventRepository extends AbstractRepository
         return $this->getRepository()->findBy([], ['date' => 'DESC']);
     }
 
+    public function findBySlug(string $slug): ?Event
+    {
+        return $this->getRepository()->findOneBy([
+            'slug' => $slug,
+        ]);
+    }
+
+    public function findByOldSlug(string $slug): ?Event
+    {
+        return $this->getRepository()->findOneBy([
+            'originalRelativeUrl' => $slug,
+        ]);
+    }
+
     protected function getClassType(): string
     {
         return Event::class;

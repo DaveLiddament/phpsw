@@ -15,25 +15,26 @@ class SpeakersController extends AbstractController
     /**
      * @Route("/speakers", name="speakers")
      */
-    public function speakers(): Response
+    public function speakers(PersonRepository $personRepository): Response
     {
+        $speakers = $personRepository->findAll();
         return $this->render('speakers.html.twig', [
             'page' => 'speakers',
-            'speakers' => [],
+            'speakers' => $speakers,
         ]);
     }
 
     /**
-     * @Route("/speakers/{speakerSlug}", name="speaker")
+     * @Route("/speakers/{slug}", name="speaker")
      */
-    public function speaker(string $speakerSlug, PersonRepository $personRepository): Response
+    public function speaker(string $slug, PersonRepository $personRepository): Response
     {
-        $speaker = $personRepository->findBySlug($speakerSlug);
+        $speaker = $personRepository->findBySlug($slug);
         NotFoundRedirector::assertFound($speaker);
+
         return $this->render('speaker.html.twig', [
             'page' => 'speaker',
             'speaker' => $speaker,
         ]);
     }
-
 }

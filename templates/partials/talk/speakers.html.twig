@@ -9,7 +9,7 @@
                 </div>
 
                 <div class="flex-grow">
-                    <a href="{{ personUrl(speaker) }}" class="link block mb-1">
+                    <a href="{{ url('speaker', {'slug' : speaker.slug}) }}" class="link block mb-1">
                         {{ speaker.name }}
                     </a>
 
