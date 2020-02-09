@@ -6,6 +6,7 @@ namespace App\Form;
 
 use App\Entity\Event;
 use App\Entity\Talk;
+use App\Validator\JoindinIdConstraint;
 use Symfony\Component\Validator\Constraints;
 use Webmozart\Assert\Assert;
 
@@ -56,7 +57,7 @@ class TalkDto
 
     /**
      * @var string|null
-     * @Constraints\Length(max="255")
+     * @JoindinIdConstraint()
      */
     public $joindinUrl;
 
