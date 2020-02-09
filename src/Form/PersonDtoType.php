@@ -24,7 +24,7 @@ class PersonDtoType extends AbstractType
                     return ucfirst($value);
                 },
             ])
-            ->add('photoUrl', TextType::class, [
+            ->add('photoUrl', UrlType::class, [
                 'required' => false,
             ])
             ->add('description', TextType::class, [
