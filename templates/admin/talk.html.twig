@@ -10,7 +10,7 @@
         <tbody>
         <tr>
             <th>Abstract</th>
-            <td>{{ talk.abstract }}</td>
+            <td>{{ talk.abstract|nullToEmpty|markdown_to_html }}</td>
         </tr>
         <tr>
             <th>Event</th>
@@ -22,7 +22,7 @@
         </tr>
         <tr>
             <th>JoindIn</th>
-            <td>{{ talk.joindinUrl }}</td>
+            <td>{{ talk.joindinUrl|joindin }}</td>
         </tr>
 
         <tr>
