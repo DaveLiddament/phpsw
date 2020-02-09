@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Form;
 
+use App\Validator\GithubHandleConstraint;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\Regex;
 
 class GithubHandleType extends AbstractType
 {
@@ -15,9 +15,7 @@ class GithubHandleType extends AbstractType
     {
         $resolver->setDefaults([
             'constraints' => [
-                new Regex([
-                    'pattern' => '/^[a-z\d](?:[a-z\d]|-(?=[a-z\d])){0,38}$/i',
-                ]),
+                new GithubHandleConstraint(),
             ],
         ]);
     }
