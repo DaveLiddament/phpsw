@@ -14,27 +14,27 @@
         </tr>
         <tr>
             <th>Description</th>
-            <td>{{ person.description }}</td>
+            <td>{{ person.description|nullToEmpty|markdown_to_html }}</td>
         </tr>
         <tr>
             <th>Full description</th>
-            <td>{{ person.fullDescription }}</td>
+            <td>{{ person.fullDescription|nullToEmpty|markdown_to_html }}</td>
         </tr>
         <tr>
             <th>Twitter handle</th>
-            <td>{{ person.twitterHandle }}</td>
+            <td>{{ person.twitterHandle|twitter }}</td>
         </tr>
         <tr>
             <th>Github handle</th>
-            <td>{{ person.githubHandle }}</td>
+            <td>{{ person.githubHandle|github }}</td>
         </tr>
         <tr>
             <th>Website</th>
-            <td>{{ person.websiteUrl}}</td>
+            <td>{{ person.websiteUrl|website}}</td>
         </tr>
         <tr>
             <th>MeetupId</th>
-            <td>{{ person.meetupId}}</td>
+            <td>{{ person.meetupId|meetupMember}}</td>
         </tr>
         <tr>
             <th>Email</th>
