@@ -37,12 +37,6 @@ class TalkDto
 
     /**
      * @var string|null
-     * @Constraints\Length(max="255")
-     */
-    public $originalRelativeUrl;
-
-    /**
-     * @var string|null
      * @Constraints\Url()
      * @Constraints\Length(max="255")
      */
@@ -77,7 +71,6 @@ class TalkDto
         $talkDto->talk = $talk;
         $talkDto->title = $talk->getTitle();
         $talkDto->abstract = $talk->getAbstract();
-        $talkDto->originalRelativeUrl = $talk->getOriginalRelativeUrl();
         $talkDto->slidesUrl = $talk->getSlidesUrl();
         $talkDto->joindinUrl = $talk->getJoindinUrl();
         $talkDto->videoUrl = $talk->getVideoUrl();
@@ -107,7 +100,6 @@ class TalkDto
         }
 
         $talk->setAbstract($this->abstract);
-        $talk->setOriginalRelativeUrl($this->originalRelativeUrl);
         $talk->setShowcase($this->showcase);
         $talk->setSlidesUrl($this->slidesUrl);
         $talk->setJoindinUrl($this->joindinUrl);

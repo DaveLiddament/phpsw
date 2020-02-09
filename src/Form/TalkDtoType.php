@@ -18,9 +18,6 @@ class TalkDtoType extends AbstractType
             ->add('abstract', TextType::class, [
                 'required' => false,
             ])
-            ->add('originalRelativeUrl', TextType::class, [
-                'required' => false,
-            ])
             ->add('videoUrl', TextType::class, [
                 'required' => false,
             ])

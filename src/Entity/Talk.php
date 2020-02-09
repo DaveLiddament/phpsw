@@ -50,12 +50,6 @@ class Talk
      * @var string|null
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $originalRelativeUrl;
-
-    /**
-     * @var string|null
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
     private $slidesUrl;
 
     /**
@@ -123,18 +117,6 @@ class Talk
     public function getEvent(): Event
     {
         return $this->event;
-    }
-
-    public function getOriginalRelativeUrl(): ?string
-    {
-        return $this->originalRelativeUrl;
-    }
-
-    public function setOriginalRelativeUrl(?string $originalRelativeUrl): self
-    {
-        $this->originalRelativeUrl = $originalRelativeUrl;
-
-        return $this;
     }
 
     public function getSlidesUrl(): ?string
