@@ -24,7 +24,7 @@ Vagrant.configure(2) do |config|
     wget -q https://packages.sury.org/php/apt.gpg -O- | sudo apt-key add -
     echo "deb https://packages.sury.org/php/ stretch main" | sudo tee /etc/apt/sources.list.d/php.list
     sudo apt-get update
-    sudo apt-get install -y php7.3 php7.3-xml php7.3-mbstring apache2 mysql-server mysql-client php7.3-mysql php7.3-intl vim htop 
+    sudo apt-get install -y php7.3 php7.3-xml php7.3-mbstring php7.3-curl apache2 mysql-server mysql-client php7.3-mysql php7.3-intl vim htop 
     curl -sS https://getcomposer.org/installer | sudo php -- --install-dir=/usr/local/bin --filename=composer
     wget https://get.symfony.com/cli/installer -O - | bash
     mv ~/.symfony/bin/symfony /usr/local/bin/symfony
@@ -32,7 +32,6 @@ Vagrant.configure(2) do |config|
     mysql -e "CREATE USER IF NOT EXISTS phpsw@localhost IDENTIFIED BY 'mypass';"
     mysql -e "CREATE DATABASE IF NOT EXISTS phpsw;"
     mysql -e "GRANT ALL ON phpsw.* TO phpsw@localhost;"
-
 
    
   SHELL
