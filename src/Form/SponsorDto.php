@@ -30,6 +30,7 @@ class SponsorDto
     /**
      * @var string|null
      * @Constraints\NotBlank()
+     * @Constraints\Url()
      * @Constraints\Length(max="255")
      */
     public $logoUrl;
