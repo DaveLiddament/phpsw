@@ -14,6 +14,6 @@ class MeetupIdConstraintValidator extends AbstractConstraintValidator
 
     protected function getRegEx(): string
     {
-        return '/^[0-9_]{1,15}$/';
+        return '/^[0-9]{1,15}$/';
     }
 }
