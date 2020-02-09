@@ -133,7 +133,7 @@ class PersonDto
         $person->setWebsiteUrl($this->websiteUrl);
         $person->setMeetupId($this->meetupId);
         $person->setEmail($this->email);
-        $person->setMeetupId($this->mobileNumber);
+        $person->setMobileNumber($this->mobileNumber);
 
         return $person;
     }
