@@ -282,4 +282,20 @@ class Event
     {
         $this->originalRelativeUrl = $originalRelativeUrl;
     }
+
+    /**
+     * @param Collection<int,Person> $organisers
+     */
+    public function setOrganisers(Collection $organisers): void
+    {
+        $this->organisers = $organisers;
+    }
+
+    /**
+     * @param Collection<int,Sponsor> $sponsors
+     */
+    public function setSponsors(Collection $sponsors): void
+    {
+        $this->sponsors = $sponsors;
+    }
 }

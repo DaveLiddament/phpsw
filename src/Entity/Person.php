@@ -301,4 +301,9 @@ class Person
     {
         return $this->slug;
     }
+
+    public function isOrganiser(): bool
+    {
+        return self::ORGANISER_USER === $this->type;
+    }
 }
