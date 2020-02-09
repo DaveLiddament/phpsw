@@ -5,8 +5,10 @@ declare(strict_types=1);
 namespace App\Form;
 
 use App\Entity\Event;
+use App\Entity\Person;
 use App\Entity\Talk;
 use App\Validator\JoindinIdConstraint;
+use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Validator\Constraints;
 use Webmozart\Assert\Assert;
 
@@ -60,6 +62,11 @@ class TalkDto
      */
     public $showcase;
 
+    /**
+     * @var Collection<int,Person>
+     */
+    public $speakers;
+
     public static function newInstance(Event $event): self
     {
         return new self($event);
@@ -75,6 +82,7 @@ class TalkDto
         $talkDto->joindinUrl = $talk->getJoindinUrl();
         $talkDto->videoUrl = $talk->getVideoUrl();
         $talkDto->showcase = $talk->isShowcase();
+        $talkDto->speakers = $talk->getSpeakers();
 
         return$talkDto;
     }
@@ -104,6 +112,7 @@ class TalkDto
         $talk->setSlidesUrl($this->slidesUrl);
         $talk->setJoindinUrl($this->joindinUrl);
         $talk->setVideoUrl($this->videoUrl);
+        $talk->setSpeakers($this->speakers);
 
         return $talk;
     }

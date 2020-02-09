@@ -40,6 +40,7 @@ class EventDtoType extends AbstractType
                 'group_by' => function (Person $choice, $key, $value): string {
                     return $choice->isOrganiser() ? 'Organiser' : 'Other';
                 },
+                'required' => false,
             ])
             ->add('sponsors', EntityType::class, [
                 'class' => Sponsor::class,
@@ -49,6 +50,7 @@ class EventDtoType extends AbstractType
                 'group_by' => function (Sponsor $choice, $key, $value): string {
                     return $choice->isCurrentSponsor() ? 'Current' : 'Other';
                 },
+                'required' => false,
             ])
             ->add('venue', EntityType::class, [
                 'class' => Venue::class,

@@ -14,7 +14,7 @@
         </tr>
         <tr>
             <th class="">Meetup ID</th>
-            <td>{{ event.meetupId }}</td>
+            <td>{{ event.meetupId|meetupEvent }}</td>
         </tr>
         <tr>
             <th>Description</th>
@@ -43,6 +43,18 @@
                 </td>
             </tr>
         {% endif %}
+
+        {% if event.sponsors.count > 0 %}
+            <tr>
+                <th>Sponsor</th>
+                <td>
+                    {% for sponsor in event.sponsors %}
+                        <a href="{{ url('sponsorRead', { sponsor: sponsor.id}) }}">{{ sponsor.name }}</a><br>
+                    {% endfor %}
+                </td>
+            </tr>
+        {% endif %}
+
         </tbody>
 
     </table>

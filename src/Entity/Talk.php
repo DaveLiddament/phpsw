@@ -183,6 +183,14 @@ class Talk
         return $this;
     }
 
+    /**
+     * @param Collection<int,Person> $speakers
+     */
+    public function setSpeakers(Collection $speakers): void
+    {
+        $this->speakers = $speakers;
+    }
+
     public function isShowcase(): bool
     {
         return $this->showcase;
