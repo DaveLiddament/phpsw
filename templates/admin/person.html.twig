@@ -6,7 +6,7 @@
 
     <h1>Person: {{ person.name }}</h1>
 
-    <table class="table">
+    <table class="table table-sm">
         <tbody>
         <tr>
             <th>Type</th>
@@ -72,11 +72,11 @@
     </table>
 
     <p>
-        <a href="{{ url('personUpdate', {'person' : person.id}) }}" class="btn btn-info" role="button">Edit</a>
+        <a href="{{ url('personUpdate', {'person' : person.id}) }}" class="btn btn-sm btn-info" role="button">Edit</a>
         {% if person.canDelete %}
-            <a href="{{ url('personDelete', {'person' : person.id}) }}" class="btn btn-danger" role="button">Delete</a>
+            <a href="{{ url('personDelete', {'person' : person.id}) }}" class="btn btn-sm btn-danger" role="button">Delete</a>
         {% endif %}
-        <a href="{{ url('speaker', {'slug' : person.slug}) }}" class="btn btn-success" role="button">View on website</a>
+        <a href="{{ url('speaker', {'slug' : person.slug}) }}" class="btn btn-sm btn-success" role="button">View on website</a>
     </p>
 
     Back to <a href="{{ url('personList') }}">person list</a>.

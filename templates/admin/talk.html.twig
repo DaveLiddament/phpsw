@@ -6,7 +6,7 @@
 
     <h1>Talk: {{ talk.title }}</h1>
 
-    <table class="table">
+    <table class="table table-sm">
         <tbody>
         <tr>
             <th>Abstract</th>
@@ -49,9 +49,9 @@
     </table>
 
     <p>
-        <a href="{{ url('talkUpdate', {'talk' : talk.id}) }}" class="btn btn-info" role="button">Edit</a>
-        <a href="{{ url('talkDelete', {'talk' : talk.id}) }}" class="btn btn-danger" role="button">Delete</a>
-        <a href="{{ url('talk', {'slug' : talk.slug}) }}" class="btn btn-success" role="button">View on website</a>
+        <a href="{{ url('talkUpdate', {'talk' : talk.id}) }}" class="btn btn-sm btn-info" role="button">Edit</a>
+        <a href="{{ url('talkDelete', {'talk' : talk.id}) }}" class="btn btn-sm btn-danger" role="button">Delete</a>
+        <a href="{{ url('talk', {'slug' : talk.slug}) }}" class="btn btn-sm btn-success" role="button">View on website</a>
     </p>
 
     Back to <a href="{{ url('eventRead', {'event' : talk.event.id}) }}">talk's event</a>.

@@ -15,7 +15,7 @@
                 {% if latestEvent %}
                     <h5 class="card-title">{{ latestEvent.title }} ({{ latestEvent.date|date("jS M Y") }})
                         <a href="{{ url('eventUpdate', {'event' : latestEvent.id}) }}" role="button"
-                           class="btn btn-info">Edit</a>
+                           class="btn btn-sm btn-info">Edit</a>
                     </h5>
                     <p class="card-text">{{ latestEvent.description }}</p>
                     <ul>
@@ -24,7 +24,7 @@
                         {% endfor %}
                     </ul>
                 {% endif %}
-                <p><a href="{{ url('eventCreate') }}" role="button" class="btn btn-info">Create new event</a></p>
+                <p><a href="{{ url('eventCreate') }}" role="button" class="btn btn-sm btn-info">Create new event</a></p>
             </div>
         </div>
 
@@ -54,7 +54,7 @@
                 {% endfor %}
             </ul>
         </div>
-        <p><a href="{{ url('personList') }}" role="button" class="btn btn-info">View all people</a></p>
+        <p><a href="{{ url('personList') }}" role="button" class="btn btn-sm btn-info">View all people</a></p>
     </div>
 
     <div class="card">
@@ -68,7 +68,7 @@
                 {% endfor %}
             </ul>
         </div>
-        <p><a href="{{ url('sponsorList') }}" role="button" class="btn btn-info">View all sponsors</a></p>
+        <p><a href="{{ url('sponsorList') }}" role="button" class="btn btn-sm btn-info">View all sponsors</a></p>
     </div>
 
 {% endblock %}
