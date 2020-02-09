@@ -79,6 +79,6 @@ class CustomFilters extends AbstractExtension
             return '';
         }
 
-        return "<a href=\"https://joind.in/user/$joindin/\">$joindin</a>";
+        return "<a href=\"https://joind.in/talk/$joindin\">$joindin</a>";
     }
 }
