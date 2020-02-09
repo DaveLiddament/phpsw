@@ -5,8 +5,10 @@ namespace App\Form;
 use App\Entity\Person;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -31,19 +33,19 @@ class PersonDtoType extends AbstractType
             ->add('fullDescription', TextType::class, [
                 'required' => false,
             ])
-            ->add('twitterHandle', TextType::class, [
+            ->add('twitterHandle', TwitterHandleType::class, [
                 'required' => false,
             ])
-            ->add('githubHandle', TextType::class, [
+            ->add('githubHandle', GithubHandleType::class, [
                 'required' => false,
             ])
-            ->add('websiteUrl', TextType::class, [
+            ->add('websiteUrl', UrlType::class, [
                 'required' => false,
             ])
-            ->add('meetupId', TextType::class, [
+            ->add('meetupId', MeetupIdType::class, [
                 'required' => false,
             ])
-            ->add('email', TextType::class, [
+            ->add('email', EmailType::class, [
                 'required' => false,
             ])
             ->add('mobileNumber', TextType::class, [
