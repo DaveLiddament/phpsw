@@ -52,6 +52,7 @@ hooks:
     set -e
     bin/console assets:install --symlink --relative public
     bin/console cache:clear
+    bin/console doctrine:migrations:migrate -n
 
 
 web:
