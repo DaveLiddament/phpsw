@@ -7,7 +7,7 @@
     <h1>Events</h1>
 
     {% if events %}
-        <table class="table">
+        <table class="table table-sm">
             <thead class="thead-light">
                 <tr>
                     <th>Date</th>
@@ -23,9 +23,9 @@
                     <td>{{ event.title }}</td>
                     <td>{{ event.talks|length }}</td>
                     <td>
-                        <a href="{{ url('eventUpdate', {'event' : event.id}) }}" class="btn btn-info" role="button">Edit</a>
+                        <a href="{{ url('eventUpdate', {'event' : event.id}) }}" class="btn btn-sm btn-info" role="button">Edit</a>
                         {% if event.canDelete %}
-                            <a href="{{ url('eventDelete', {'event' : event.id}) }}" class="btn btn-danger" role="button">Delete</a>
+                            <a href="{{ url('eventDelete', {'event' : event.id}) }}" class="btn btn-sm btn-danger" role="button">Delete</a>
                         {% endif %}
                     </td>
                 </tr>
@@ -37,6 +37,6 @@
         <p>There are no events.</p>
     {% endif %}
 
-    <a href="{{ url('eventCreate') }}" class="btn btn-info" type="button">Create event</a>
+    <a href="{{ url('eventCreate') }}" class="btn btn-sm btn-info" type="button">Create event</a>
 
 {% endblock %}

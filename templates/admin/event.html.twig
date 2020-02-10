@@ -6,7 +6,7 @@
 
     <h1>Event {{ event.title }}</h1>
 
-    <table class="table">
+    <table class="table table-sm">
         <tbody>
         <tr>
             <th>Date</th>
@@ -14,7 +14,7 @@
         </tr>
         <tr>
             <th class="">Meetup ID</th>
-            <td>{{ event.meetupId }}</td>
+            <td>{{ event.meetupId|meetupEvent }}</td>
         </tr>
         <tr>
             <th>Description</th>
@@ -43,16 +43,28 @@
                 </td>
             </tr>
         {% endif %}
+
+        {% if event.sponsors.count > 0 %}
+            <tr>
+                <th>Sponsor</th>
+                <td>
+                    {% for sponsor in event.sponsors %}
+                        <a href="{{ url('sponsorRead', { sponsor: sponsor.id}) }}">{{ sponsor.name }}</a><br>
+                    {% endfor %}
+                </td>
+            </tr>
+        {% endif %}
+
         </tbody>
 
     </table>
 
     <p>
-        <a href="{{ url('eventUpdate', {'event' : event.id}) }}" class="btn btn-info" role="button">Edit</a>
+        <a href="{{ url('eventUpdate', {'event' : event.id}) }}" class="btn btn-sm btn-info" role="button">Edit</a>
         {% if event.canDelete %}
-            <a href="{{ url('eventDelete', {'event' : event.id}) }}" class="btn btn-danger" role="button">Delete</a>
+            <a href="{{ url('eventDelete', {'event' : event.id}) }}" class="btn btn-sm btn-danger" role="button">Delete</a>
         {% endif %}
-        <a href="{{ url('event', {'slug' : event.slug}) }}" class="btn btn-success" role="button">View on website</a>
+        <a href="{{ url('event', {'slug' : event.slug}) }}" class="btn btn-sm btn-success" role="button">View on website</a>
     </p>
 
     Back to <a href="{{ url('eventList') }}">event list</a>.
@@ -64,7 +76,7 @@
     {% if event.talks.count == 0 %}
         <p>No talks</p>
     {% else %}
-        <table class="table">
+        <table class="table table-sm">
             <thead>
             <tr>
                 <th>Title</th>
@@ -82,8 +94,8 @@
                         {% endfor %}
                     </td>
                     <td>
-                        <a href="{{ url('talkUpdate', {'talk' : talk.id}) }}" class="btn btn-info" role="button">Edit</a>
-                        <a href="{{ url('talkDelete', {'talk' : talk.id}) }}" class="btn btn-danger" role="button">Delete</a>
+                        <a href="{{ url('talkUpdate', {'talk' : talk.id}) }}" class="btn btn-sm btn-info" role="button">Edit</a>
+                        <a href="{{ url('talkDelete', {'talk' : talk.id}) }}" class="btn btn-sm btn-danger" role="button">Delete</a>
                     </td>
                 </tr>
             {% endfor %}
@@ -93,6 +105,6 @@
     {% endif %}
 
     <p>
-        <a href="{{ url('talkCreate', {event: event.id}) }}" class="btn btn-info" type="button">Create talk</a>
+        <a href="{{ url('talkCreate', {event: event.id}) }}" class="btn btn-sm btn-info" type="button">Create talk</a>
     </p>
 {% endblock %}

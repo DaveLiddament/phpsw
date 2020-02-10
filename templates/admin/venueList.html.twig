@@ -7,7 +7,7 @@
     <h1>Venues</h1>
 
     {% if venues %}
-        <table class="table">
+        <table class="table table-sm">
             <thead class="thead-light">
                 <tr>
                     <th>Name</th>
@@ -23,9 +23,9 @@
                     <td>{{ venue.type }}</td>
                     <td>{{ venue.address }} {{ venue.postcode }}</td>
                     <td>
-                        <a href="{{ url('venueUpdate', {'venue' : venue.id}) }}" class="btn btn-info" role="button">Edit</a>
+                        <a href="{{ url('venueUpdate', {'venue' : venue.id}) }}" class="btn btn-sm btn-info" role="button">Edit</a>
                         {% if venue.canDelete %}
-                            <a href="{{ url('venueDelete', {'venue' : venue.id}) }}" class="btn btn-danger" role="button">Delete</a>
+                            <a href="{{ url('venueDelete', {'venue' : venue.id}) }}" class="btn btn-sm btn-danger" role="button">Delete</a>
                         {% endif %}
                     </td>
                 </tr>
@@ -37,6 +37,6 @@
         <p>There are no venues.</p>
     {% endif %}
 
-    <a href="{{ url('venueCreate') }}" class="btn btn-info" type="button">Create venue</a>
+    <a href="{{ url('venueCreate') }}" class="btn btn-sm btn-info" type="button">Create venue</a>
 
 {% endblock %}

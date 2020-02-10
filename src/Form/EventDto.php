@@ -5,8 +5,11 @@ declare(strict_types=1);
 namespace App\Form;
 
 use App\Entity\Event;
+use App\Entity\Person;
+use App\Entity\Sponsor;
 use App\Entity\Venue;
 use DateTimeImmutable;
+use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Validator\Constraints;
 use Webmozart\Assert\Assert;
 
@@ -57,6 +60,16 @@ class EventDto
      */
     public $pub;
 
+    /**
+     * @var Collection<int,Person>
+     */
+    public $organisers;
+
+    /**
+     * @var Collection<int,Sponsor>
+     */
+    public $sponsors;
+
     public static function newInstance(): self
     {
         return new self();
@@ -73,6 +86,8 @@ class EventDto
         $eventDto->venue = $event->getVenue();
         $eventDto->pub = $event->getPub();
         $eventDto->originalRelativeUrl = $event->getOriginalRelativeUrl();
+        $eventDto->organisers = $event->getOrganisers();
+        $eventDto->sponsors = $event->getSponsors();
 
         return$eventDto;
     }
@@ -96,6 +111,8 @@ class EventDto
         $event->setVenue($this->venue);
         $event->setPub($this->pub);
         $event->setOriginalRelativeUrl($this->originalRelativeUrl);
+        $event->setOrganisers($this->organisers);
+        $event->setSponsors($this->sponsors);
 
         return $event;
     }

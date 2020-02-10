@@ -6,7 +6,7 @@
 
     <h1>Sponsor: {{ sponsor.name }}</h1>
 
-    <table class="table">
+    <table class="table table-sm">
         <tbody>
         <tr>
             <th>Type</th>
@@ -45,9 +45,9 @@
     </table>
 
     <p>
-        <a href="{{ url('sponsorUpdate', {'sponsor' : sponsor.id}) }}" class="btn btn-info" role="button">Edit</a>
+        <a href="{{ url('sponsorUpdate', {'sponsor' : sponsor.id}) }}" class="btn btn-sm btn-info" role="button">Edit</a>
         {% if sponsor.canDelete %}
-            <a href="{{ url('sponsorDelete', {'sponsor' : sponsor.id}) }}" class="btn btn-danger" role="button">Delete</a>
+            <a href="{{ url('sponsorDelete', {'sponsor' : sponsor.id}) }}" class="btn btn-sm btn-danger" role="button">Delete</a>
         {% endif %}
     </p>
 

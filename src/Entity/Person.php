@@ -5,10 +5,12 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Webmozart\Assert\Assert;
 
 /**
  * @ORM\Entity()
+ * @UniqueEntity("slug")
  */
 class Person
 {
@@ -298,5 +300,10 @@ class Person
     public function getSlug(): string
     {
         return $this->slug;
+    }
+
+    public function isOrganiser(): bool
+    {
+        return self::ORGANISER_USER === $this->type;
     }
 }

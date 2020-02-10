@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Form;
 
 use App\Entity\Person;
+use App\Validator;
 use Symfony\Component\Validator\Constraints;
 use Webmozart\Assert\Assert;
 
@@ -50,7 +51,7 @@ class PersonDto
 
     /**
      * @var string|null
-     * @Constraints\Length(max="255")
+     * @Validator\TwitterHandleConstraint()
      */
     public $twitterHandle;
 
@@ -63,12 +64,13 @@ class PersonDto
 
     /**
      * @var string|null
+     * @Validator\MeetupIdConstraint()
      */
     public $meetupId;
 
     /**
      * @var string|null
-     * @Constraints\Length(max="255")
+     * @Validator\GithubHandleConstraint()
      */
     public $githubHandle;
 
@@ -131,7 +133,7 @@ class PersonDto
         $person->setWebsiteUrl($this->websiteUrl);
         $person->setMeetupId($this->meetupId);
         $person->setEmail($this->email);
-        $person->setMeetupId($this->mobileNumber);
+        $person->setMobileNumber($this->mobileNumber);
 
         return $person;
     }

@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Form;
 
+use App\Validator\MeetupIdConstraint;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\Regex;
 
 class MeetupIdType extends AbstractType
 {
@@ -15,9 +15,7 @@ class MeetupIdType extends AbstractType
     {
         $resolver->setDefaults([
             'constraints' => [
-                new Regex([
-                    'pattern' => '/^[0-9]{1,}$/',
-                ]),
+                new MeetupIdConstraint(),
             ],
         ]);
     }

@@ -22,6 +22,10 @@ abstract class AbstractConstraintValidator extends ConstraintValidator
         }
 
         if ((null === $value) || ('' === $value)) {
+            return;
+        }
+
+        if (!is_string($value)) {
             throw new UnexpectedTypeException($value, 'string');
         }
 

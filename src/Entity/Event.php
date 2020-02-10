@@ -6,9 +6,11 @@ use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity()
+ * @UniqueEntity("slug")
  */
 class Event
 {
@@ -279,5 +281,21 @@ class Event
     public function setOriginalRelativeUrl(?string $originalRelativeUrl): void
     {
         $this->originalRelativeUrl = $originalRelativeUrl;
+    }
+
+    /**
+     * @param Collection<int,Person> $organisers
+     */
+    public function setOrganisers(Collection $organisers): void
+    {
+        $this->organisers = $organisers;
+    }
+
+    /**
+     * @param Collection<int,Sponsor> $sponsors
+     */
+    public function setSponsors(Collection $sponsors): void
+    {
+        $this->sponsors = $sponsors;
     }
 }

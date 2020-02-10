@@ -2,6 +2,8 @@
 
 namespace App\Form;
 
+use App\Entity\Person;
+use App\Entity\Sponsor;
 use App\Entity\Venue;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -30,6 +32,26 @@ class EventDtoType extends AbstractType
             ->add('originalRelativeUrl', TextType::class, [
                 'required' => false,
             ])
+            ->add('organisers', EntityType::class, [
+                'class' => Person::class,
+                'choice_label' => 'name',
+                'expanded' => false,
+                'multiple' => true,
+                'group_by' => function (Person $choice, $key, $value): string {
+                    return $choice->isOrganiser() ? 'Organiser' : 'Other';
+                },
+                'required' => false,
+            ])
+            ->add('sponsors', EntityType::class, [
+                'class' => Sponsor::class,
+                'choice_label' => 'name',
+                'expanded' => false,
+                'multiple' => true,
+                'group_by' => function (Sponsor $choice, $key, $value): string {
+                    return $choice->isCurrentSponsor() ? 'Current' : 'Other';
+                },
+                'required' => false,
+            ])
             ->add('venue', EntityType::class, [
                 'class' => Venue::class,
                 'choice_label' => 'name',
@@ -40,8 +62,7 @@ class EventDtoType extends AbstractType
                 'choice_label' => 'name',
                 'required' => false,
             ])
-            ->add('submit', SubmitType::class)
-        ;
+            ->add('submit', SubmitType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
