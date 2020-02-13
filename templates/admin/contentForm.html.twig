@@ -1,0 +1,18 @@
+{% extends 'admin/base.html.twig' %}
+
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+
+{% set menuItem = 'contents' %}
+{% block body %}
+
+    {% if isCreate %}
+        <h1>Create Page</h1>
+    {% else %}
+        <h1>Update Page</h1>
+    {% endif %}
+
+    {{ form(form) }}
+
+    Back to <a href="{{ url('contentList') }}">content list</a>.
+
+{% endblock %}

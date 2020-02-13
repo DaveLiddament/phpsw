@@ -1,0 +1,40 @@
+{% extends 'admin/base.html.twig' %}
+
+
+{% set menuItem = 'contents' %}
+{% block body %}
+
+    <h1>Content pages</h1>
+
+    {% if contents %}
+        <table class="table table-sm">
+            <thead class="thead-light">
+                <tr>
+                    <th>Slug</th>
+                    <th>Title</th>
+                    <th>Published</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for content in contents %}
+                <tr>
+                    <td>{{ content.slug }}</td>
+                    <td>{{ content.title }}</td>
+                    <td>{{ content.publish }}</td>
+                    <td>
+                        <a href="{{ url('contentUpdate', {'content' : content.id}) }}" class="btn btn-sm btn-info" role="button">Edit</a>
+                        <a href="{{ url('contentDelete', {'content' : content.id}) }}" class="btn btn-sm btn-danger" role="button">Delete</a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+
+        </table>
+    {% else %}
+        <p>There are no content pages.</p>
+    {% endif %}
+
+    <a href="{{ url('contentCreate') }}" class="btn btn-sm btn-info" type="button">Create content page</a>
+
+{% endblock %}

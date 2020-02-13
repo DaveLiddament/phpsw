@@ -1,0 +1,17 @@
+{% extends 'admin/base.html.twig' %}
+
+
+{% set menuItem = 'contents' %}
+{% block body %}
+
+    <h1>Delete page: {{ name }}</h1>
+
+    <p class="warning">Are you sure you want to delete page ({{ name }})? </p>
+
+    <form method="post">
+        <input type="submit" role="button" value="Delete" class="btn btn-sm btn-danger">
+    </form>
+
+    Back to <a href="{{ url('contentList') }}">content list</a>.
+
+{% endblock %}
