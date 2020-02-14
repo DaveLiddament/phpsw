@@ -1,18 +1,18 @@
 # Code of Conduct
 PHP South West (PHP-SW), all its venues and online spaces are an inclusive environment, based on treating all individuals respectfully, regardless of gender and gender expression, sexual orientation, age, disability (physical or mental), nationality, race, ethnicity, religion (or lack thereof), physical appearance, lifestyle choices, software preferences or other dimensions of diversity.
 
-PHP-SW is an intentionally positive meetup that recognizes and celebrates the creativity and collaboration of independent creators as well as the diversity of people, cultures, and opinions that they bring to the PHP-SW.
+PHP-SW is an intentionally positive meetup that recognises and celebrates the creativity and collaboration of independent creators as well as the diversity of people, cultures, and opinions that they bring to the PHP-SW.
 
-We value respectful behavior above individual opinions.
+We value respectful behaviour above individual opinions.
 
-This Code of Conduct outlines our expectations as well as the consequences for unacceptable behavior. All participants at PHP-SW must adhere to the PHP-SW code of conduct.
+This Code of Conduct outlines our expectations as well as the consequences for unacceptable behaviour. All participants at PHP-SW must adhere to the PHP-SW code of conduct.
 
-## RESPECTFUL BEHAVIOR INCLUDES:
+## RESPECTFUL BEHAVIOUR INCLUDES:
 
 - Be considerate, kind, constructive and helpful.
 - Treat everyone with respect and dignity.
 - Be mindful of your surroundings and of your fellow participants.
-- Refrain from demeaning, discriminatory or harassing behavior and speech.
+- Refrain from demeaning, discriminatory or harassing behaviour and speech.
 
 If you're not sure, ask someone instead of assuming.
 Alert meetup organisers if you notice a dangerous situation or someone in distress.
@@ -34,21 +34,21 @@ Alert meetup organisers if you notice a dangerous situation or someone in distre
 
 We expect all meetup participants (organisers, sponsors, venue staff, volunteers, speakers, attendees, and other guests) to abide by this code of conduct at all meetup venues and meetup-related social events.
 
-## What to do if you witness or are subject to unacceptable behavior
+## What to do if you witness or are subject to unacceptable behaviour
 
-You are empowered to politely engage when you feel that someone is engaging in unacceptable behavior. The person engaging in unacceptable behavior may not be aware of what they are doing - politely bringing their behavior to their attention is encouraged.
+You are empowered to politely engage when you feel that someone is engaging in unacceptable behaviour. The person engaging in unacceptable behaviour may not be aware of what they are doing - politely bringing their behaviour to their attention is encouraged.
 
 If you are uncomfortable speaking up, or feel that your concerns are not being duly considered, please notify the Code of Conduct Guardian as soon as possible (contact details below). All concerns shared with us will be kept confidential, but you may also submit an anonymous report.
 
-If you experience unacceptable behavior and feel in any way unable to respond or resolve it respectfully (for any reason), please immediately bring it to the attention of a member of the PHP-SW Team. We want to hear from you about anything that you feel is disrespectful, threatening, or just icky in any way. We will listen and work to resolve the matter.
+If you experience unacceptable behaviour and feel in any way unable to respond or resolve it respectfully (for any reason), please immediately bring it to the attention of a member of the PHP-SW Team. We want to hear from you about anything that you feel is disrespectful, threatening, or just icky in any way. We will listen and work to resolve the matter.
 
 ## Apologize for mistakes
 
-Should you catch yourself engaging in unacceptable behavior, or be confronted as such, own up to your words and actions, and apologize accordingly. No one is perfect, and even well-intentioned people make mistakes. What matters is how you handle them, and avoiding repeating them in the future.
+Should you catch yourself engaging in unacceptable behaviour, or be confronted as such, own up to your words and actions, and apologize accordingly. No one is perfect, and even well-intentioned people make mistakes. What matters is how you handle them, and avoiding repeating them in the future.
 
 ## Consequences of unacceptable behaviour
 
-Unacceptable behavior will not be tolerated whether by other attendees, media, speakers, volunteers, organisers, venue staff, sponsors or exhibitors.
+Unacceptable behaviour will not be tolerated whether by other attendees, media, speakers, volunteers, organisers, venue staff, sponsors or exhibitors.
 
 As organisers, we will seek to resolve conflicts peacefully and in a manner that is positive for the community.
 
