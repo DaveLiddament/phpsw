@@ -37,7 +37,6 @@ class ContentDto
     /**
      * @var string|null
      * @Constraints\NotBlank()
-     * @Constraints\Length(max="255")
      */
     public $copy;
 

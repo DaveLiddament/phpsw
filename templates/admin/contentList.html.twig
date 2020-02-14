@@ -23,6 +23,7 @@
                     <td>{{ content.title }}</td>
                     <td>{{ content.publish }}</td>
                     <td>
+                        <a href="{{ url('content', {'slug' : content.slug}) }}" class="btn btn-sm btn-success" role="button">View on website</a>
                         <a href="{{ url('contentUpdate', {'content' : content.id}) }}" class="btn btn-sm btn-info" role="button">Edit</a>
                         <a href="{{ url('contentDelete', {'content' : content.id}) }}" class="btn btn-sm btn-danger" role="button">Delete</a>
                     </td>

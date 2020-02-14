@@ -38,6 +38,12 @@
                                 Sponsors
                             </a>
                         </li>
+                        <li>
+                            <a class="link text-teal-dark mb-2 flex items-center" href="{{ url('codeOfConduct') }}">
+                                {% include 'svg/calendar.html.twig' with { class: 'fill-current w-4 mr-1' } %}
+                                Code of conduct
+                            </a>
+                        </li>
                     </ul>
                 </div>
 
@@ -50,12 +56,6 @@
                             <a class="link text-teal-dark mb-1 flex items-center" href="{{ url('brandAssets') }}">Brand assets</a>
                         </li>
                         {# TODO add these back in #}
-{#                        <li>#}
-{#                            <a class="link text-teal-dark mb-2 flex items-center" href="{{ url('codeOfConduct') }}">#}
-{#                                {% include 'svg/calendar.html.twig' with { class: 'fill-current w-4 mr-1' } %}#}
-{#                                Code of conduct#}
-{#                            </a>#}
-{#                        </li>#}
                         {# <li>
                             <a class="link text-teal-dark mb-2 flex items-center" href="#0">
                                 <svg class="fill-current w-4 mr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M1.228 10.891a.528.528 0 0 0-.159.69l1.296 2.244c.133.23.438.325.677.208L7 12.116V19h2v-7.854l4.071-1.973-2.62-4.54-9.223 6.258zm17.229-7.854a4.061 4.061 0 0 0-5.546-1.484c-.91.525-1.508 1.359-1.801 2.289l2.976 5.156c.951.212 1.973.11 2.885-.415a4.06 4.06 0 0 0 1.486-5.546z"/></svg>
@@ -94,7 +94,7 @@
                             </a>
                         </li>
                         <li>
-                            <a class="link text-teal-dark mb-2 flex items-center" href="https://github.com/phpsw/phpsw-ng">
+                            <a class="link text-teal-dark mb-2 flex items-center" href="https://github.com/phpsw/phpsw-symfony5">
                                 {% include "svg/github.html.twig" with { class: 'fill-current w-4 mr-1' } %}
                                 Fork this on GitHub
                             </a>

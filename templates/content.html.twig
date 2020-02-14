@@ -1,0 +1,13 @@
+{% extends "base.html.twig" %}
+
+
+{% block content %}
+
+<h1 class="title">{{ content.title }}</h1>
+
+<div class="md:flex -mx-4">
+    <div class="px-4 content leading-normal text-sm">
+    {{ content.copy|markdown_to_html }}
+    </div>
+</div>
+{% endblock %}

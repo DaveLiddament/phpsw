@@ -1,3 +1,9 @@
 controllers:
     resource: ../../src/Controller/
     type: annotation
+    exclude: ../../src/Controller/Web/ContentController
+
+fallbackController:
+    resource: ../../src/Controller/Web/ContentController.php
+    type: annotation
+
